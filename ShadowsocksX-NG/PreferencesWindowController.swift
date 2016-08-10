@@ -27,6 +27,7 @@ class PreferencesWindowController: NSWindowController
 
     @IBOutlet weak var obfsfield: NSComboBox!
     @IBOutlet weak var protocolfield: NSComboBox!
+    @IBOutlet weak var obfspara: NSTextField!
 
     
     let tableViewDragType: String = "ss.server.profile.data"
@@ -179,6 +180,8 @@ class PreferencesWindowController: NSWindowController
 
             obfsfield.bind("value", toObject: editingProfile, withKeyPath: "obfs", options: [NSContinuouslyUpdatesValueBindingOption: true])
             protocolfield.bind("value", toObject: editingProfile, withKeyPath: "protocols", options: [NSContinuouslyUpdatesValueBindingOption: true])
+
+            obfspara.bind("value", toObject: editingProfile, withKeyPath: "obfspara", options: [NSContinuouslyUpdatesValueBindingOption: true])
 
         } else {
             editingProfile = nil

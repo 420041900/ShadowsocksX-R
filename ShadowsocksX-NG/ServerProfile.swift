@@ -19,7 +19,9 @@ class ServerProfile: NSObject {
     var password:String = ""
     var remark:String = ""
 
+
     var obfs:String = "plain"
+    var obfspara:String = ""
     var protocols:String = "origin"
 
     override init() {
@@ -45,6 +47,10 @@ class ServerProfile: NSObject {
                 profile.remark = remark as! String
             }
 
+            if let obfspara = data["obfspara"] {
+                profile.obfspara = obfspara as! String
+            }
+
         }
         
         if let id = data["Id"] as? String {
@@ -68,6 +74,7 @@ class ServerProfile: NSObject {
         d["Remark"] = remark
         d["obfs"] = obfs
         d["protocol"] = protocols
+        d["obfspara"] = obfspara
 //        d["OTA"] = ota
         return d
     }
@@ -78,7 +85,8 @@ class ServerProfile: NSObject {
                                          "password": password,
                                          "method": method,
                                          "protocol":protocols,
-                                         "obfs":obfs
+                                         "obfs":obfs,
+                                         "obfs_param":obfspara
                                          ]
         
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -128,15 +136,18 @@ class ServerProfile: NSObject {
         
         return true
     }
+
+    func base64(string:String)->String{
+
+        return string.dataUsingEncoding(NSUTF8StringEncoding)!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+
+    }
     
     func URL() -> NSURL? {
-        let parts = "\(method):\(password)@\(serverHost):\(serverPort)"
-        let base64String = parts.dataUsingEncoding(NSUTF8StringEncoding)?
-            .base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
-        if var s = base64String {
-            s = s.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "="))
-            return NSURL(string: "ss://\(s)")
-        }
-        return nil
+//        let parts = "\(method):\(password)@\(serverHost):\(serverPort)"
+//        服务器:端口:协议:加密方式:混淆方式:base64（密码）？obfsparam= Base64(混淆参数)&remarks=Base64(备注)
+
+        let parts = "\(serverHost):\(serverPort):\(protocols):\(method):\(obfs):\(base64(password))?obfsparam=\(base64(obfspara))&remarks=\(base64(remark))"
+            return NSURL(string: "ssr://\(base64(parts))")
     }
 }
