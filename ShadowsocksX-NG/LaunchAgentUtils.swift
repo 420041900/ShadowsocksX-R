@@ -61,9 +61,7 @@ func generateSSLocalLauchAgentPlist() -> Bool {
         "ProgramArguments": arguments,
         "EnvironmentVariables": ["DYLD_LIBRARY_PATH": NSHomeDirectory() + APP_SUPPORT_DIR]
     ]
-    NSLog("%@",dict)
 
-    NSLog("%@", plistFilepath)
 
     dict.writeToFile(plistFilepath, atomically: true)
     let Sha1Sum = getFileSHA1Sum(plistFilepath)

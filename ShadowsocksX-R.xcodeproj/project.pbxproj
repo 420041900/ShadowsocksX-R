@@ -103,12 +103,12 @@
 		9B07EFA91D048E880052D9DF /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
 		9B07EFAA1D048E880052D9DF /* menu_icon_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon_disabled.png; sourceTree = "<group>"; };
 		9B07EFAB1D048E880052D9DF /* menu_icon_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon_disabled@2x.png"; sourceTree = "<group>"; };
-		9B0BFFE51D0460A70040E62B /* ShadowsocksX-NG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ShadowsocksX-NG.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B0BFFE51D0460A70040E62B /* ShadowsocksX-R.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ShadowsocksX-R.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B0BFFE81D0460A70040E62B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B0BFFEA1D0460A70040E62B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B0BFFED1D0460A70040E62B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9B0BFFEF1D0460A70040E62B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9B0BFFF41D0460A70040E62B /* ShadowsocksX-NGTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ShadowsocksX-NGTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B0BFFF41D0460A70040E62B /* ShadowsocksX-R.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ShadowsocksX-R.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B0BFFF81D0460A70040E62B /* ShadowsocksX_NGTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowsocksX_NGTests.swift; sourceTree = "<group>"; };
 		9B0BFFFA1D0460A70040E62B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B0D55451D2CC1B800A4A8E2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
@@ -253,8 +253,8 @@
 		9B0BFFE61D0460A70040E62B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9B0BFFE51D0460A70040E62B /* ShadowsocksX-NG.app */,
-				9B0BFFF41D0460A70040E62B /* ShadowsocksX-NGTests.xctest */,
+				9B0BFFE51D0460A70040E62B /* ShadowsocksX-R.app */,
+				9B0BFFF41D0460A70040E62B /* ShadowsocksX-R.xctest */,
 				9B3FFF441D09CD3B0019A709 /* proxy_conf_helper */,
 			);
 			name = Products;
@@ -342,9 +342,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9B0BFFE41D0460A70040E62B /* ShadowsocksX-NG */ = {
+		9B0BFFE41D0460A70040E62B /* ShadowsocksX-R */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9B0B00081D0460A70040E62B /* Build configuration list for PBXNativeTarget "ShadowsocksX-NG" */;
+			buildConfigurationList = 9B0B00081D0460A70040E62B /* Build configuration list for PBXNativeTarget "ShadowsocksX-R" */;
 			buildPhases = (
 				A3C8167BB5EB01FBDE2A08BC /* [CP] Check Pods Manifest.lock */,
 				9B0BFFE11D0460A70040E62B /* Sources */,
@@ -358,14 +358,14 @@
 			dependencies = (
 				9B3FFF531D09E2B30019A709 /* PBXTargetDependency */,
 			);
-			name = "ShadowsocksX-NG";
+			name = "ShadowsocksX-R";
 			productName = "ShadowsocksX-NG";
-			productReference = 9B0BFFE51D0460A70040E62B /* ShadowsocksX-NG.app */;
+			productReference = 9B0BFFE51D0460A70040E62B /* ShadowsocksX-R.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9B0BFFF31D0460A70040E62B /* ShadowsocksX-NGTests */ = {
+		9B0BFFF31D0460A70040E62B /* ShadowsocksX-RTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9B0B000B1D0460A70040E62B /* Build configuration list for PBXNativeTarget "ShadowsocksX-NGTests" */;
+			buildConfigurationList = 9B0B000B1D0460A70040E62B /* Build configuration list for PBXNativeTarget "ShadowsocksX-RTests" */;
 			buildPhases = (
 				22E2FC257F00091B923B1A15 /* [CP] Check Pods Manifest.lock */,
 				9B0BFFF01D0460A70040E62B /* Sources */,
@@ -379,9 +379,9 @@
 			dependencies = (
 				9B0BFFF61D0460A70040E62B /* PBXTargetDependency */,
 			);
-			name = "ShadowsocksX-NGTests";
+			name = "ShadowsocksX-RTests";
 			productName = "ShadowsocksX-NGTests";
-			productReference = 9B0BFFF41D0460A70040E62B /* ShadowsocksX-NGTests.xctest */;
+			productReference = 9B0BFFF41D0460A70040E62B /* ShadowsocksX-R.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		9B3FFF431D09CD3B0019A709 /* proxy_conf_helper */ = {
@@ -425,7 +425,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9B0BFFE01D0460A70040E62B /* Build configuration list for PBXProject "ShadowsocksX-NG" */;
+			buildConfigurationList = 9B0BFFE01D0460A70040E62B /* Build configuration list for PBXProject "ShadowsocksX-R" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -439,8 +439,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9B0BFFE41D0460A70040E62B /* ShadowsocksX-NG */,
-				9B0BFFF31D0460A70040E62B /* ShadowsocksX-NGTests */,
+				9B0BFFE41D0460A70040E62B /* ShadowsocksX-R */,
+				9B0BFFF31D0460A70040E62B /* ShadowsocksX-RTests */,
 				9B3FFF431D09CD3B0019A709 /* proxy_conf_helper */,
 			);
 		};
@@ -658,7 +658,7 @@
 /* Begin PBXTargetDependency section */
 		9B0BFFF61D0460A70040E62B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9B0BFFE41D0460A70040E62B /* ShadowsocksX-NG */;
+			target = 9B0BFFE41D0460A70040E62B /* ShadowsocksX-R */;
 			targetProxy = 9B0BFFF51D0460A70040E62B /* PBXContainerItemProxy */;
 		};
 		9B3FFF531D09E2B30019A709 /* PBXTargetDependency */ = {
@@ -828,7 +828,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yicheng.ShadowsocksX-R";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "ShadowsocksX-R";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksX-NG/ShadowsocksX-NG-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -854,7 +854,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yicheng.ShadowsocksX-R";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "ShadowsocksX-R";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksX-NG/ShadowsocksX-NG-Bridging-Header.h";
 			};
 			name = Release;
@@ -868,8 +868,8 @@
 				INFOPLIST_FILE = "ShadowsocksX-NGTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.qiuyuzhou.ShadowsocksX-NGTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShadowsocksX-NG.app/Contents/MacOS/ShadowsocksX-NG";
+				PRODUCT_NAME = "ShadowsocksX-R";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShadowsocksX-R.app/Contents/MacOS/ShadowsocksX-R";
 			};
 			name = Debug;
 		};
@@ -882,8 +882,8 @@
 				INFOPLIST_FILE = "ShadowsocksX-NGTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.qiuyuzhou.ShadowsocksX-NGTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShadowsocksX-NG.app/Contents/MacOS/ShadowsocksX-NG";
+				PRODUCT_NAME = "ShadowsocksX-R";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShadowsocksX-R.app/Contents/MacOS/ShadowsocksX-R";
 			};
 			name = Release;
 		};
@@ -908,7 +908,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9B0B00081D0460A70040E62B /* Build configuration list for PBXNativeTarget "ShadowsocksX-NG" */ = {
+		9B0B00081D0460A70040E62B /* Build configuration list for PBXNativeTarget "ShadowsocksX-R" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9B0B00091D0460A70040E62B /* Debug */,
@@ -917,7 +917,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9B0B000B1D0460A70040E62B /* Build configuration list for PBXNativeTarget "ShadowsocksX-NGTests" */ = {
+		9B0B000B1D0460A70040E62B /* Build configuration list for PBXNativeTarget "ShadowsocksX-RTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9B0B000C1D0460A70040E62B /* Debug */,
@@ -926,7 +926,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9B0BFFE01D0460A70040E62B /* Build configuration list for PBXProject "ShadowsocksX-NG" */ = {
+		9B0BFFE01D0460A70040E62B /* Build configuration list for PBXProject "ShadowsocksX-R" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9B0B00061D0460A70040E62B /* Debug */,

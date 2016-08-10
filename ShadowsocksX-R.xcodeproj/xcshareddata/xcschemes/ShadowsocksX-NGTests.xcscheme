@@ -17,9 +17,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9B0BFFF31D0460A70040E62B"
-               BuildableName = "ShadowsocksX-NGTests.xctest"
-               BlueprintName = "ShadowsocksX-NGTests"
-               ReferencedContainer = "container:ShadowsocksX-NG.xcodeproj">
+               BuildableName = "ShadowsocksX-R.xctest"
+               BlueprintName = "ShadowsocksX-RTests"
+               ReferencedContainer = "container:ShadowsocksX-R.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
