@@ -18,8 +18,12 @@ class ServerProfile: NSObject {
     var method:String = "aes-128-cfb"
     var password:String = ""
     var remark:String = ""
-    var ota: Bool = false // onetime authentication
-    
+
+
+    var obfs:String = "plain"
+    var obfspara:String = ""
+    var protocols:String = "origin"
+
     override init() {
         uuid = NSUUID().UUIDString
     }
@@ -35,12 +39,18 @@ class ServerProfile: NSObject {
             profile.serverPort = (data["ServerPort"] as! NSNumber).unsignedShortValue
             profile.method = data["Method"] as! String
             profile.password = data["Password"] as! String
+
+            profile.obfs = data["obfs"] as! String
+            profile.protocols = data["protocol"] as! String
+
             if let remark = data["Remark"] {
                 profile.remark = remark as! String
             }
-            if let ota = data["OTA"] {
-                profile.ota = ota as! Bool
+
+            if let obfspara = data["obfspara"] {
+                profile.obfspara = obfspara as! String
             }
+
         }
         
         if let id = data["Id"] as? String {
@@ -62,7 +72,10 @@ class ServerProfile: NSObject {
         d["Method"] = method
         d["Password"] = password
         d["Remark"] = remark
-        d["OTA"] = ota
+        d["obfs"] = obfs
+        d["protocol"] = protocols
+        d["obfspara"] = obfspara
+//        d["OTA"] = ota
         return d
     }
     
@@ -70,14 +83,18 @@ class ServerProfile: NSObject {
         var conf: [String: AnyObject] = ["server": serverHost,
                                          "server_port": NSNumber(unsignedShort: serverPort),
                                          "password": password,
-                                         "method": method,]
+                                         "method": method,
+                                         "protocol":protocols,
+                                         "obfs":obfs,
+                                         "obfs_param":obfspara
+                                         ]
         
         let defaults = NSUserDefaults.standardUserDefaults()
         conf["local_port"] = NSNumber(unsignedShort: UInt16(defaults.integerForKey("LocalSocks5.ListenPort")))
         conf["local_address"] = defaults.stringForKey("LocalSocks5.ListenAddress")
         conf["timeout"] = NSNumber(unsignedInt: UInt32(defaults.integerForKey("LocalSocks5.Timeout")))
-        conf["auth"] = NSNumber(bool: ota)
-        
+//        conf["auth"] = NSNumber(bool: ota)
+
         return conf
     }
     
@@ -119,15 +136,18 @@ class ServerProfile: NSObject {
         
         return true
     }
+
+    func base64(string:String)->String{
+
+        return string.dataUsingEncoding(NSUTF8StringEncoding)!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+
+    }
     
     func URL() -> NSURL? {
-        let parts = "\(method):\(password)@\(serverHost):\(serverPort)"
-        let base64String = parts.dataUsingEncoding(NSUTF8StringEncoding)?
-            .base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
-        if var s = base64String {
-            s = s.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "="))
-            return NSURL(string: "ss://\(s)")
-        }
-        return nil
+//        let parts = "\(method):\(password)@\(serverHost):\(serverPort)"
+//        服务器:端口:协议:加密方式:混淆方式:base64（密码）？obfsparam= Base64(混淆参数)&remarks=Base64(备注)
+
+        let parts = "\(serverHost):\(serverPort):\(protocols):\(method):\(obfs):\(base64(password))?obfsparam=\(base64(obfspara))&remarks=\(base64(remark))"
+            return NSURL(string: "ssr://\(base64(parts))")
     }
 }

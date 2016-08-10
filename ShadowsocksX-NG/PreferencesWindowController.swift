@@ -22,9 +22,13 @@ class PreferencesWindowController: NSWindowController
     @IBOutlet weak var passwordTextField: NSTextField!
     @IBOutlet weak var remarkTextField: NSTextField!
     
-    @IBOutlet weak var otaCheckBoxBtn: NSButton!
-    
+
     @IBOutlet weak var copyURLBtn: NSButton!
+
+    @IBOutlet weak var obfsfield: NSComboBox!
+    @IBOutlet weak var protocolfield: NSComboBox!
+    @IBOutlet weak var obfspara: NSTextField!
+
     
     let tableViewDragType: String = "ss.server.profile.data"
     
@@ -53,7 +57,26 @@ class PreferencesWindowController: NSWindowController
             "rc4",
             "table",
             ])
-        
+
+        obfsfield.addItemsWithObjectValues([
+            "plain",
+            "http_simple",
+            "tls_simple",
+            "random_head",
+            "tls1.0_session_auth",
+            "tls1.2_ticket_auth"
+            ])
+
+        protocolfield.addItemsWithObjectValues([
+            "origin",
+            "verify_simple",
+            "verify_sha1",
+            "auth_simple",
+            "auth_sha1",
+            "auth_sha1_v2"
+            ])
+
+
         profilesTableView.reloadData()
         updateProfileBoxVisible()
     }
@@ -154,9 +177,12 @@ class PreferencesWindowController: NSWindowController
             
             remarkTextField.bind("value", toObject: editingProfile, withKeyPath: "remark"
                 , options: [NSContinuouslyUpdatesValueBindingOption: true])
-            
-            otaCheckBoxBtn.bind("value", toObject: editingProfile, withKeyPath: "ota"
-                , options: [NSContinuouslyUpdatesValueBindingOption: true])
+
+            obfsfield.bind("value", toObject: editingProfile, withKeyPath: "obfs", options: [NSContinuouslyUpdatesValueBindingOption: true])
+            protocolfield.bind("value", toObject: editingProfile, withKeyPath: "protocols", options: [NSContinuouslyUpdatesValueBindingOption: true])
+
+            obfspara.bind("value", toObject: editingProfile, withKeyPath: "obfspara", options: [NSContinuouslyUpdatesValueBindingOption: true])
+
         } else {
             editingProfile = nil
             hostTextField.unbind("value")
@@ -167,7 +193,7 @@ class PreferencesWindowController: NSWindowController
             
             remarkTextField.unbind("value")
             
-            otaCheckBoxBtn.unbind("value")
+//            otaCheckBoxBtn.unbind("value")
         }
     }
     
