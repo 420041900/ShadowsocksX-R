@@ -53,8 +53,8 @@ void ScanQRCodeOnScreen() {
         CGImageRef image = CGDisplayCreateImage(displays[displaysIndex]);
         NSArray *features = [detector featuresInImage:[CIImage imageWithCGImage:image]];
         for (CIQRCodeFeature *feature in features) {
-            NSLog(@"%@", feature.messageString);
-            if ( [feature.messageString hasPrefix:@"ss://"] )
+//            NSLog(@"%@", feature.messageString);
+            if ( [feature.messageString hasPrefix:@"ssr://"] )
             {
                 [foundSSUrls addObject:[NSURL URLWithString:feature.messageString]];
             }
@@ -72,8 +72,19 @@ void ScanQRCodeOnScreen() {
      ];
 }
 
+NSString* decode(NSString* str){
+    NSData* decodeData = [[NSData alloc] initWithBase64EncodedString:str options:0];
+    NSString* decodeStr = [[NSString alloc] initWithData:decodeData encoding:NSASCIIStringEncoding];
+    return decodeStr;
+}
+
 // 解析SS URL，如果成功则返回一个与ServerProfile类兼容的dict
 NSDictionary<NSString *, id>* ParseSSURL(NSURL* url) {
+
+
+
+
+
     if (!url.host) {
         return nil;
     }
@@ -97,37 +108,79 @@ NSDictionary<NSString *, id>* ParseSSURL(NSURL* url) {
             urlString = decodedString;
         }
         i++;
-        urlString = [urlString stringByReplacingOccurrencesOfString:@"ss://" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, urlString.length)];
-        NSRange firstColonRange = [urlString rangeOfString:@":"];
-        NSRange lastColonRange = [urlString rangeOfString:@":" options:NSBackwardsSearch];
-        NSRange lastAtRange = [urlString rangeOfString:@"@" options:NSBackwardsSearch];
-        if (firstColonRange.length == 0) {
+        urlString = [urlString stringByReplacingOccurrencesOfString:@"ssr://" withString:@"" options:NSAnchoredSearch range:NSMakeRange(0, urlString.length)];
+
+//        服务器:端口:协议:加密方式:混淆方式:base64（密码）？obfsparam= Base64(混淆参数)&remarks=Base64(备注)
+
+
+
+
+        NSRange ColonRange = [urlString rangeOfString:@":"];
+        if (ColonRange.length == 0) {
             errorReason = @"colon not found";
             continue;
         }
-        if (firstColonRange.location == lastColonRange.location) {
-            errorReason = @"only one colon";
-            continue;
+
+        NSString *server = [urlString substringWithRange:NSMakeRange(0, ColonRange.location)]; //服务器
+
+        urlString = [urlString substringFromIndex:ColonRange.location + 1];
+        ColonRange = [urlString rangeOfString:@":"];
+        if(ColonRange.length == 0){continue;}
+        NSString *server_port = [urlString substringWithRange:NSMakeRange(0, ColonRange.location)]; //端口
+        urlString = [urlString substringFromIndex:ColonRange.location + 1];
+
+
+        ColonRange = [urlString rangeOfString:@":"];
+        if(ColonRange.length == 0){continue;}
+        NSString *protocols = [urlString substringWithRange:NSMakeRange(0, ColonRange.location)]; //协议
+        urlString = [urlString substringFromIndex:ColonRange.location + 1];
+
+        ColonRange = [urlString rangeOfString:@":"];
+        if(ColonRange.length == 0){continue;}
+        NSString *method = [urlString substringWithRange:NSMakeRange(0, ColonRange.location)]; //协议
+        urlString = [urlString substringFromIndex:ColonRange.location + 1];
+
+        ColonRange = [urlString rangeOfString:@":"];
+        if(ColonRange.length == 0){continue;}
+        NSString *obfs = [urlString substringWithRange:NSMakeRange(0, ColonRange.location)]; //混淆
+        urlString = [urlString substringFromIndex:ColonRange.location + 1];
+
+
+        ColonRange = [urlString rangeOfString:@"/"];
+        if(ColonRange.length == 0){continue;}
+        NSString *pwd_encode = [urlString substringWithRange:NSMakeRange(0, ColonRange.location)]; //密码
+        NSString *password = decode(pwd_encode);
+        urlString = [urlString substringFromIndex:ColonRange.location + 1];
+
+
+        NSRange obfsrange = [urlString rangeOfString:@"obfsparam="];
+        NSRange remarkRange = [urlString rangeOfString:@"&remarks="];
+
+        NSString *obfsparam = @"";
+        if (obfsrange.length != 0){
+            obfsparam = [urlString substringFromIndex:obfsrange.location + 10];
+            if(remarkRange.length !=0){
+                NSRange tmp = [obfsparam rangeOfString:@"&"];
+                obfsparam = decode([obfsparam substringToIndex:tmp.location]);
+            }
         }
-        if (lastAtRange.length == 0) {
-            errorReason = @"at not found";
-            continue;
+        NSString *remark = @"";
+        if(remarkRange.length !=0){
+            remark = decode([urlString substringFromIndex:remarkRange.location+9]);
         }
-        if (!((firstColonRange.location < lastAtRange.location) && (lastAtRange.location < lastColonRange.location))) {
-            errorReason = @"wrong position";
-            continue;
-        }
-        NSString *method = [urlString substringWithRange:NSMakeRange(0, firstColonRange.location)];
-        NSString *password = [urlString substringWithRange:NSMakeRange(firstColonRange.location + 1, lastAtRange.location - firstColonRange.location - 1)];
-        NSString *IP = [urlString substringWithRange:NSMakeRange(lastAtRange.location + 1, lastColonRange.location - lastAtRange.location - 1)];
-        NSString *port = [urlString substringWithRange:NSMakeRange(lastColonRange.location + 1, urlString.length - lastColonRange.location - 1)];
-        
-        
-        return @{@"ServerHost": IP,
-                 @"ServerPort": @([port integerValue]),
+
+
+        return @{@"ServerHost": server,
+                 @"ServerPort": @([server_port integerValue]),
                  @"Method": method,
                  @"Password": password,
+                 @"Remark":remark,
+                 @"obfs":obfs,
+                 @"protocol":protocols,
+                 @"obfspara":obfsparam
                  };
     }
     return nil;
 }
+
+
