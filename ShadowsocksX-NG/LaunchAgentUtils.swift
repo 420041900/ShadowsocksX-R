@@ -8,10 +8,10 @@
 
 import Foundation
 
-let SS_LOCAL_VERSION = "2.4.6"
-let APP_SUPPORT_DIR = "/Library/Application Support/ShadowsocksX-NG/"
+let SS_LOCAL_VERSION = "2.6.2"
+let APP_SUPPORT_DIR = "/Library/Application Support/ShadowsocksX-R/"
 let LAUNCH_AGENT_DIR = "/Library/LaunchAgents/"
-let LAUNCH_AGENT_CONF_NAME = "com.qiuyuzhou.shadowsocksX-NG.local.plist"
+let LAUNCH_AGENT_CONF_NAME = "com.yicheng.ShadowsocksX-R.local.plist"
 
 
 func getFileSHA1Sum(filepath: String) -> String {
@@ -53,7 +53,7 @@ func generateSSLocalLauchAgentPlist() -> Bool {
 
     // For a complete listing of the keys, see the launchd.plist manual page.
     let dict: NSMutableDictionary = [
-        "Label": "com.qiuyuzhou.shadowsocksX-NG.local",
+        "Label": "com.yicheng.ShadowsocksX-R.local",
         "WorkingDirectory": NSHomeDirectory() + APP_SUPPORT_DIR,
         "KeepAlive": true,
         "StandardOutPath": logFilePath,
@@ -62,6 +62,8 @@ func generateSSLocalLauchAgentPlist() -> Bool {
         "EnvironmentVariables": ["DYLD_LIBRARY_PATH": NSHomeDirectory() + APP_SUPPORT_DIR]
     ]
     NSLog("%@",dict)
+
+    NSLog("%@", plistFilepath)
 
     dict.writeToFile(plistFilepath, atomically: true)
     let Sha1Sum = getFileSHA1Sum(plistFilepath)
@@ -128,6 +130,7 @@ func InstallSSLocal() {
 
 func writeSSLocalConfFile(conf:[String:AnyObject]) -> Bool {
     do {
+        print("writeSSLocalConfFile")
         let filepath = NSHomeDirectory() + APP_SUPPORT_DIR + "ss-local-config.json"
         let data: NSData = try NSJSONSerialization.dataWithJSONObject(conf, options: .PrettyPrinted)
         
