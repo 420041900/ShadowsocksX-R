@@ -48,7 +48,9 @@ func generateSSLocalLauchAgentPlist() -> Bool {
     if enableVerboseMode {
         arguments.append("-v")
     }
-    
+
+
+
     // For a complete listing of the keys, see the launchd.plist manual page.
     let dict: NSMutableDictionary = [
         "Label": "com.qiuyuzhou.shadowsocksX-NG.local",
@@ -59,6 +61,8 @@ func generateSSLocalLauchAgentPlist() -> Bool {
         "ProgramArguments": arguments,
         "EnvironmentVariables": ["DYLD_LIBRARY_PATH": NSHomeDirectory() + APP_SUPPORT_DIR]
     ]
+    NSLog("%@",dict)
+
     dict.writeToFile(plistFilepath, atomically: true)
     let Sha1Sum = getFileSHA1Sum(plistFilepath)
     if oldSha1Sum != Sha1Sum {
