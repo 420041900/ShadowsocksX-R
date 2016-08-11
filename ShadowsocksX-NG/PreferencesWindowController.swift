@@ -29,6 +29,7 @@ class PreferencesWindowController: NSWindowController
     @IBOutlet weak var protocolfield: NSComboBox!
     @IBOutlet weak var obfspara: NSTextField!
 
+    @IBOutlet weak var emptylabel: NSTextField!
     
     let tableViewDragType: String = "ss.server.profile.data"
     
@@ -123,7 +124,14 @@ class PreferencesWindowController: NSWindowController
         }
         profileMgr.save()
         window?.performClose(nil)
-        
+
+        if profileMgr.activeProfileId == nil{
+            profileMgr.setActiveProfiledId(editingProfile.uuid)
+            (NSApplication.sharedApplication().delegate as! AppDelegate).updateServersMenu()
+            SyncSSLocal()
+
+        }
+
         NSNotificationCenter.defaultCenter()
             .postNotificationName(NOTIFY_SERVER_PROFILES_CHANGED, object: nil)
     }
@@ -151,12 +159,17 @@ class PreferencesWindowController: NSWindowController
             }
         }
     }
+
+
     
     func updateProfileBoxVisible() {
         if profileMgr.profiles.isEmpty {
             profileBox.hidden = true
+            emptylabel.hidden = false
+
         } else {
             profileBox.hidden = false
+            emptylabel.hidden = true
         }
     }
     

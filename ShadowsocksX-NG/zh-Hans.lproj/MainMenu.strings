@@ -50,8 +50,8 @@
 /* Class = "NSMenuItem"; title = "登录时自动启动"; ObjectID = "eUq-p7-ICK"; */
 "eUq-p7-ICK.title" = "登录时自动启动";
 
-/* Class = "NSMenuItem"; title = "Showsocks: On"; ObjectID = "fzk-mE-CEV"; */
-"fzk-mE-CEV.title" = "Showsocks: On";
+/* Class = "NSMenuItem"; title = "ShowsocksR: On"; ObjectID = "fzk-mE-CEV"; */
+"fzk-mE-CEV.title" = "ShowsocksR: On";
 
 /* Class = "NSMenuItem"; title = "PAC自动模式"; ObjectID = "r07-Gu-aEz"; */
 "r07-Gu-aEz.title" = "PAC自动模式";

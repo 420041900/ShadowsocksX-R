@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PreferencesWindowController" customModule="ShadowsocksX_R" customModuleProvider="target">
             <connections>
                 <outlet property="copyURLBtn" destination="6mK-sY-xoH" id="YIO-RO-CXs"/>
+                <outlet property="emptylabel" destination="J2t-DL-Ekz" id="GhQ-eV-DyP"/>
                 <outlet property="hostTextField" destination="R4F-j7-GkK" id="a1I-WO-Qdj"/>
                 <outlet property="methodTextField" destination="ef4-8J-eFn" id="OXd-fC-ICR"/>
                 <outlet property="obfsfield" destination="6QG-vW-5Lt" id="fWG-mh-Hu4"/>
@@ -89,6 +90,18 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J2t-DL-Ekz">
+                        <rect key="frame" x="278" y="206" width="204" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Ys1-3v-1YX"/>
+                            <constraint firstAttribute="width" constant="200" id="exc-Qg-nbQ"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="没有配置文件，快添加一个吧！" id="8Zm-UC-9Ja">
+                            <font key="font" size="13" name=".PingFangSC-Regular"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <box borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="oZ5-85-pwY">
                         <rect key="frame" x="193" y="62" width="382" height="351"/>
                         <view key="contentView" id="a3z-VL-3xV">
@@ -443,11 +456,13 @@ DQ
                     <constraint firstAttribute="bottom" secondItem="kGm-Zm-ipY" secondAttribute="bottom" constant="20" id="4mV-za-Y7X"/>
                     <constraint firstItem="u4U-Ju-FJV" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="ENd-Db-Gkn"/>
                     <constraint firstAttribute="trailing" secondItem="yyD-qq-aSk" secondAttribute="trailing" constant="20" id="G9D-Iw-4Lu"/>
+                    <constraint firstItem="J2t-DL-Ekz" firstAttribute="leading" secondItem="u4U-Ju-FJV" secondAttribute="trailing" constant="92" id="J4Z-md-9RL"/>
                     <constraint firstItem="u4U-Ju-FJV" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="Kq5-QH-lh6"/>
                     <constraint firstItem="yyD-qq-aSk" firstAttribute="leading" secondItem="kGm-Zm-ipY" secondAttribute="trailing" constant="17" id="QcA-Ml-GOY"/>
                     <constraint firstItem="oZ5-85-pwY" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="dJL-Q1-bZn"/>
                     <constraint firstItem="oZ5-85-pwY" firstAttribute="leading" secondItem="Gqv-5O-Wwf" secondAttribute="trailing" constant="8" id="eWc-As-w8b"/>
                     <constraint firstItem="Gqv-5O-Wwf" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="iXW-gi-jZl"/>
+                    <constraint firstItem="J2t-DL-Ekz" firstAttribute="centerY" secondItem="se5-gp-TjO" secondAttribute="centerY" id="jxs-ZM-8W3"/>
                 </constraints>
             </view>
             <connections>

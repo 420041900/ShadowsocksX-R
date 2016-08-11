@@ -148,6 +148,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     func applyConfig() {
+        let profileMgr = ServerProfileManager.instance
+        if profileMgr.profiles.count == 0{
+            let notice = NSUserNotification()
+            notice.title = "还没有服务器设定！"
+            notice.subtitle = "去设置里面填一下吧，填完记得选择呦~"
+            NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notice)
+        }
         let defaults = NSUserDefaults.standardUserDefaults()
         let isOn = defaults.boolForKey("ShadowsocksOn")
         let mode = defaults.stringForKey("ShadowsocksRunningMode")
@@ -368,12 +375,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         let defaults = NSUserDefaults.standardUserDefaults()
         let isOn = defaults.boolForKey("ShadowsocksOn")
         if isOn {
-            runningStatusMenuItem.title = "Shadowsocks: On".localized
+            runningStatusMenuItem.title = "ShadowsocksR: On".localized
             toggleRunningMenuItem.title = "Turn Shadowsocks Off".localized
             let image = NSImage(named: "menu_icon")
             statusItem.image = image
         } else {
-            runningStatusMenuItem.title = "Shadowsocks: Off".localized
+            runningStatusMenuItem.title = "ShadowsocksR: Off".localized
             toggleRunningMenuItem.title = "Turn Shadowsocks On".localized
             let image = NSImage(named: "menu_icon_disabled")
             statusItem.image = image
