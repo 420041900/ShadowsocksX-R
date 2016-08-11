@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		091C90411D5CCD77004FA23A /* cow in Resources */ = {isa = PBXBuildFile; fileRef = 091C90401D5CCD77004FA23A /* cow */; };
+		091C90431D5CCDB8004FA23A /* cow.conf in Resources */ = {isa = PBXBuildFile; fileRef = 091C90421D5CCDB8004FA23A /* cow.conf */; };
 		093607491D5C161B00BF8C88 /* bypasschina.txt in Resources */ = {isa = PBXBuildFile; fileRef = 093607481D5C161B00BF8C88 /* bypasschina.txt */; };
 		258E511BA910B0521B24DAB8 /* Pods_ShadowsocksX_NG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283ED1A8E9B711AC65670031 /* Pods_ShadowsocksX_NG.framework */; };
 		9B07EFA71D048BBB0052D9DF /* ss-local in Resources */ = {isa = PBXBuildFile; fileRef = 9B07EFA61D048BBB0052D9DF /* ss-local */; };
@@ -89,6 +91,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		091C90401D5CCD77004FA23A /* cow */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = cow; sourceTree = "<group>"; };
+		091C90421D5CCDB8004FA23A /* cow.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cow.conf; sourceTree = "<group>"; };
 		093607481D5C161B00BF8C88 /* bypasschina.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bypasschina.txt; sourceTree = "<group>"; };
 		09F561671D5B1B9900CC31B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PreferencesWindowController.strings"; sourceTree = "<group>"; };
 		19083CFCED87354F006967FF /* Pods_ShadowsocksX_NGUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksX_NGUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +230,8 @@
 				9B3FFF371D08CF110019A709 /* qrcode.htm */,
 				9B3FFF281D08A1DF0019A709 /* user-rule.txt */,
 				9B3FFF261D0898EB0019A709 /* gfwlist.txt */,
+				091C90401D5CCD77004FA23A /* cow */,
+				091C90421D5CCDB8004FA23A /* cow.conf */,
 				9B3FFF221D088E8D0019A709 /* abp.js */,
 				9B07EFA61D048BBB0052D9DF /* ss-local */,
 				9B07EFA81D048E880052D9DF /* menu_icon@2x.png */,
@@ -469,11 +475,13 @@
 				9BEEF06C1D04D4D500FC52B3 /* reload_conf_ss_local.sh in Resources */,
 				9B3FFF231D088E8D0019A709 /* abp.js in Resources */,
 				9B07EFAD1D048E880052D9DF /* menu_icon.png in Resources */,
+				091C90431D5CCDB8004FA23A /* cow.conf in Resources */,
 				9B0BFFEB1D0460A70040E62B /* Assets.xcassets in Resources */,
 				9B2491B71D0ACC3E003BBECC /* AdvPreferencesWindowController.xib in Resources */,
 				9B3FFF381D08CF110019A709 /* jquery.min.js in Resources */,
 				093607491D5C161B00BF8C88 /* bypasschina.txt in Resources */,
 				9B3FFF271D0898EB0019A709 /* gfwlist.txt in Resources */,
+				091C90411D5CCD77004FA23A /* cow in Resources */,
 				9BC70EDC1D2E3E3100EDA4CA /* Localizable.strings in Resources */,
 				9B0BFFEE1D0460A70040E62B /* MainMenu.xib in Resources */,
 				9B3FFF4C1D09D8F70019A709 /* install_helper.sh in Resources */,
