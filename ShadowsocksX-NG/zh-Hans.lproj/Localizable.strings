@@ -52,3 +52,7 @@
 
 "Proxy - ByPassChina" = "代理 - 绕过中国ip";
 
+"Failed to Add Server Profile" = "添加服务器配置失败";
+
+"Address can't not be recognized" = "地址格式无法识别";
+
