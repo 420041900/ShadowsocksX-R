@@ -67,3 +67,6 @@
 
 /* Class = "NSMenuItem"; title = "退出"; ObjectID = "vJS-JW-byz"; */
 "vJS-JW-byz.title" = "退出";
+
+/* Class = "NSMenuItem"; title = "绕过中国ip"; ObjectID = "yp4-NV-9i8"; */
+"yp4-NV-9i8.title" = "绕过中国ip";

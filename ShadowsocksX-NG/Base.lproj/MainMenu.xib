@@ -11,10 +11,11 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ShadowsocksX_NG" customModuleProvider="target">
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ShadowsocksX_R" customModuleProvider="target">
             <connections>
                 <outlet property="RunningStatusMenuItem" destination="fzk-mE-CEV" id="R4x-gK-Qcw"/>
                 <outlet property="autoModeMenuItem" destination="r07-Gu-aEz" id="9aH-pQ-Rgi"/>
+                <outlet property="bypasschinaModeMenuItem" destination="yp4-NV-9i8" id="6Fc-aq-cpU"/>
                 <outlet property="globalModeMenuItem" destination="Mw3-Jm-eXA" id="ar5-Yx-3ze"/>
                 <outlet property="lanchAtLoginMenuItem" destination="eUq-p7-ICK" id="w4p-0c-DZn"/>
                 <outlet property="manualModeMenuItem" destination="8PR-gs-c5N" id="9qz-mU-5kt"/>
@@ -45,7 +46,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Proxy" id="YZp-bf-L40">
                         <items>
-                            <menuItem title="Auto Mode By PAC" id="r07-Gu-aEz">
+                            <menuItem title="GFW List " id="r07-Gu-aEz">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="selectPACMode:" target="Voe-Tx-rLC" id="l36-cd-xl7"/>
@@ -55,6 +56,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="selectGlobalMode:" target="Voe-Tx-rLC" id="7QH-HB-B2e"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="ByPassChina" id="yp4-NV-9i8">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="selectByPassMode:" target="Voe-Tx-rLC" id="Q0Q-PV-hQT"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Manual Mode" id="8PR-gs-c5N">

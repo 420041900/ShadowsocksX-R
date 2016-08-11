@@ -29,6 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBOutlet weak var autoModeMenuItem: NSMenuItem!
     @IBOutlet weak var globalModeMenuItem: NSMenuItem!
     @IBOutlet weak var manualModeMenuItem: NSMenuItem!
+    @IBOutlet weak var bypasschinaModeMenuItem: NSMenuItem!
     
     @IBOutlet weak var serversMenuItem: NSMenuItem!
     @IBOutlet var showQRCodeMenuItem: NSMenuItem!
@@ -159,11 +160,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 ProxyConfHelper.enableGlobalProxy()
             } else if mode == "manual" {
                 ProxyConfHelper.disableProxy()
+            } else if mode == "bypasschina"{
+                ProxyConfHelper.enableBypassChina()
             }
         } else {
             StopSSLocal()
             ProxyConfHelper.disableProxy()
         }
+
     }
     
     @IBAction func toggleRunning(sender: NSMenuItem) {
@@ -251,7 +255,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         updateRunningModeMenu()
         applyConfig()
     }
-    
+
+    @IBAction func selectByPassMode(sender: NSMenuItem) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue("bypasschina", forKey: "ShadowsocksRunningMode")
+        updateRunningModeMenu()
+        applyConfig()
+    }
     @IBAction func editServerPreferences(sender: NSMenuItem) {
         if preferencesWinCtrl != nil {
             preferencesWinCtrl.close()
@@ -331,16 +341,26 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             autoModeMenuItem.state = 1
             globalModeMenuItem.state = 0
             manualModeMenuItem.state = 0
+            bypasschinaModeMenuItem.state = 0
         } else if mode == "global" {
             proxyMenuItem.title = "Proxy - Global".localized
             autoModeMenuItem.state = 0
             globalModeMenuItem.state = 1
             manualModeMenuItem.state = 0
+            bypasschinaModeMenuItem.state = 0
         } else if mode == "manual" {
             proxyMenuItem.title = "Proxy - Manual".localized
             autoModeMenuItem.state = 0
             globalModeMenuItem.state = 0
             manualModeMenuItem.state = 1
+            bypasschinaModeMenuItem.state = 0
+        } else if mode == "bypasschina"{
+            proxyMenuItem.title = "Proxy - ByPassChina".localized
+            autoModeMenuItem.state = 0
+            globalModeMenuItem.state = 0
+            manualModeMenuItem.state = 0
+            bypasschinaModeMenuItem.state = 1
+
         }
     }
     

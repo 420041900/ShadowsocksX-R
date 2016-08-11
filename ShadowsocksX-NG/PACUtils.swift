@@ -16,6 +16,8 @@ let PACUserRuleFilePath = PACRulesDirPath + "user-rule.txt"
 let PACFilePath = PACRulesDirPath + "gfwlist.js"
 let GFWListFilePath = PACRulesDirPath + "gfwlist.txt"
 
+let PACByPassChinaFilePath = PACRulesDirPath + "bypasschina.pac"
+
 
 // Because of LocalSocks5.ListenPort may be changed
 func SyncPac() {
@@ -32,7 +34,8 @@ func SyncPac() {
     if !fileMgr.fileExistsAtPath(PACRulesDirPath) {
         needGenerate = true
     }
-    
+    if !fileMgr.fileExistsAtPath(PACByPassChinaFilePath) {needGenerate = true}
+
     if needGenerate {
         GeneratePACFile()
     }
@@ -62,7 +65,14 @@ func GeneratePACFile() -> Bool {
         let src = NSBundle.mainBundle().pathForResource("user-rule", ofType: "txt")
         try! fileMgr.copyItemAtPath(src!, toPath: PACUserRuleFilePath)
     }
-    
+
+    // If bypasschina.pac is not exsited, copy from bundle
+//    if !fileMgr.fileExistsAtPath(PACByPassChinaFilePath) {
+//        let src = NSBundle.mainBundle().pathForResource("bypasschina", ofType: "txt")
+//        
+//        try! fileMgr.copyItemAtPath(src!, toPath: PACByPassChinaFilePath)
+//    }
+
     let socks5Port = NSUserDefaults.standardUserDefaults().integerForKey("LocalSocks5.ListenPort")
     
     do {
@@ -113,7 +123,17 @@ func GeneratePACFile() -> Bool {
                 // Write the pac js to file.
                 try result.dataUsingEncoding(NSUTF8StringEncoding)?
                     .writeToFile(PACFilePath, options: .DataWritingAtomic)
-                
+
+                // Setup Pac for ModeByPassChina
+                let src = NSBundle.mainBundle().pathForResource("bypasschina", ofType: "txt")
+                print(src)
+                let pacFile = NSData(contentsOfFile: src!)
+//                let pacFile = NSData(contentsOfURL: NSURL(string: src!)!);
+//                print(pacFile)
+                var pacStr = String(data: pacFile!,encoding: NSUTF8StringEncoding)!
+                pacStr = pacStr.stringByReplacingOccurrencesOfString("__PROXY__", withString: "SOCKS5 127.0.0.1:\(socks5Port);SOCKS 127.0.0.1:\(socks5Port)")
+                try pacStr.dataUsingEncoding(NSUTF8StringEncoding)?.writeToFile(PACByPassChinaFilePath, options: .DataWritingAtomic)
+//
                 return true
             } catch {
                 
@@ -123,8 +143,11 @@ func GeneratePACFile() -> Bool {
     } catch {
         NSLog("Not found gfwlist.txt")
     }
-    return false
+
+        return false
 }
+
+
 
 func UpdatePACFromGFWList() {
     // Make the dir if rulesDirPath is not exesited.

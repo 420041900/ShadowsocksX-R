@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		093607491D5C161B00BF8C88 /* bypasschina.txt in Resources */ = {isa = PBXBuildFile; fileRef = 093607481D5C161B00BF8C88 /* bypasschina.txt */; };
 		258E511BA910B0521B24DAB8 /* Pods_ShadowsocksX_NG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283ED1A8E9B711AC65670031 /* Pods_ShadowsocksX_NG.framework */; };
 		9B07EFA71D048BBB0052D9DF /* ss-local in Resources */ = {isa = PBXBuildFile; fileRef = 9B07EFA61D048BBB0052D9DF /* ss-local */; };
 		9B07EFAC1D048E880052D9DF /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B07EFA81D048E880052D9DF /* menu_icon@2x.png */; };
@@ -88,6 +89,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		093607481D5C161B00BF8C88 /* bypasschina.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bypasschina.txt; sourceTree = "<group>"; };
 		09F561671D5B1B9900CC31B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PreferencesWindowController.strings"; sourceTree = "<group>"; };
 		19083CFCED87354F006967FF /* Pods_ShadowsocksX_NGUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksX_NGUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E7783AEDB4A3BDDC9FF16AC /* libPods-proxy_conf_helper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-proxy_conf_helper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,6 +217,7 @@
 		9B07EFB01D048E900052D9DF /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				093607481D5C161B00BF8C88 /* bypasschina.txt */,
 				9BE8FBBD1D0B1FB900CAFD01 /* libcrypto.1.0.0.dylib */,
 				9B172A6C1D0ADDDD00B87B9A /* Localizable.strings */,
 				9B3FFF4B1D09D8F70019A709 /* install_helper.sh */,
@@ -469,6 +472,7 @@
 				9B0BFFEB1D0460A70040E62B /* Assets.xcassets in Resources */,
 				9B2491B71D0ACC3E003BBECC /* AdvPreferencesWindowController.xib in Resources */,
 				9B3FFF381D08CF110019A709 /* jquery.min.js in Resources */,
+				093607491D5C161B00BF8C88 /* bypasschina.txt in Resources */,
 				9B3FFF271D0898EB0019A709 /* gfwlist.txt in Resources */,
 				9BC70EDC1D2E3E3100EDA4CA /* Localizable.strings in Resources */,
 				9B0BFFEE1D0460A70040E62B /* MainMenu.xib in Resources */,
