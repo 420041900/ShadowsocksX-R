@@ -9,7 +9,7 @@
 #import "ProxyConfHelper.h"
 #import "proxy_conf_helper_version.h"
 
-#define kShadowsocksHelper @"/Library/Application Support/ShadowsocksX-NG/proxy_conf_helper"
+#define kShadowsocksHelper @"/Library/Application Support/ShadowsocksX-R/proxy_conf_helper"
 
 @implementation ProxyConfHelper
 
@@ -147,16 +147,22 @@
 
 }
 
++ (void)enableCowProxy{
+    NSMutableArray* args = [@[@"--mode", @"auto", @"--pac-url", @"http://127.0.0.1:7777/pac"]mutableCopy];
+    [self addArguments4ManualSpecifyNetworkServices:args];
+    [self callHelper:args];
+}
+
 + (void)disableProxy {
     // 带上所有参数是为了判断是否原有代理设置是否由ssx-ng设置的。如果是用户手工设置的其他配置，则不进行清空。
-//    NSString* urlString = [NSString stringWithFormat:@"%@/.ShadowsocksX-NG", NSHomeDirectory()];
-//    NSUInteger port = [[NSUserDefaults standardUserDefaults]integerForKey:@"LocalSocks5.ListenPort"];
-//    NSLog(urlString );
-//    NSMutableArray* args = [@[@"--mode", @"off"
-//                              , @"--port", [NSString stringWithFormat:@"%lu", (unsigned long)port]
-//                              , @"--pac-url", urlString
-//                              ]mutableCopy];
-    NSMutableArray* args = [@[@"--mode", @"off"]mutableCopy];
+    NSString* urlString = [NSString stringWithFormat:@"%@/.ShadowsocksX-NG", NSHomeDirectory()];
+    NSUInteger port = [[NSUserDefaults standardUserDefaults]integerForKey:@"LocalSocks5.ListenPort"];
+    if ([[[NSUserDefaults standardUserDefaults]stringForKey:@"LocalSocks5.ListenPort"] isEqualToString:@"cow"])
+        port = 7777;
+    NSMutableArray* args = [@[@"--mode", @"off"
+                              , @"--port", [NSString stringWithFormat:@"%lu", (unsigned long)port]
+                              , @"--pac-url", urlString
+                              ]mutableCopy];
     [self addArguments4ManualSpecifyNetworkServices:args];
     [self callHelper:args];
 }

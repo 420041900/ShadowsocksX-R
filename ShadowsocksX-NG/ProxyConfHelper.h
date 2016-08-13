@@ -20,4 +20,6 @@
 
 + (void) enableBypassChina;
 
++ (void)enableCowProxy;
+
 @end

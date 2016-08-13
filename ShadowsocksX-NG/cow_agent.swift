@@ -11,9 +11,6 @@ import Foundation
 
 let cow_plist_name = "com.yicheng.ShadowsocksX-R.cow.plist"
 
-var cow_timer:NSTimer?
-
-// Genarate the mac launch agent service plist
 func generateCowLauchAgentPlist() -> Bool {
     let cow_path = NSBundle.mainBundle().pathForResource("cow", ofType: nil)
     let cow_dir  = NSBundle.mainBundle().resourcePath
@@ -67,6 +64,8 @@ func ReloadCow() {
     let installerPath = bundle.pathForResource("cow.sh", ofType: nil)
     let task = NSTask.launchedTaskWithLaunchPath(installerPath!, arguments: ["reload"])
     task.waitUntilExit()
+
+
     if task.terminationStatus == 0 {
         NSLog("Start cow succeeded.")
     } else {
@@ -79,6 +78,7 @@ func StartCow() {
     let installerPath =   bundle.pathForResource("cow", ofType: "sh")
     let task = NSTask.launchedTaskWithLaunchPath(installerPath!, arguments: ["start"])
     task.waitUntilExit()
+    CowReloader.shard.start()
     if task.terminationStatus == 0 {
         NSLog("Start cow succeeded.")
     } else {
@@ -87,6 +87,7 @@ func StartCow() {
 }
 
 func StopCow() {
+    CowReloader.shard.end()
     let bundle = NSBundle.mainBundle()
     let installerPath = bundle.pathForResource("cow.sh", ofType: nil)
     let task = NSTask.launchedTaskWithLaunchPath(installerPath!, arguments: ["stop"])
@@ -96,4 +97,29 @@ func StopCow() {
     } else {
         NSLog("Stop cow failed.")
     }
+}
+
+func test(){
+    print("test")
+}
+
+
+class CowReloader:NSObject {
+    static let shard = CowReloader()
+    var timer:NSTimer?
+
+    func start(){
+        timer = NSTimer.scheduledTimerWithTimeInterval(18000, target: self, selector: #selector(CowReloader.restart_cow), userInfo: nil, repeats: true)
+    }
+
+    func restart_cow(){
+        ReloadCow()
+    }
+
+    func end(){
+        timer?.invalidate()
+        timer = nil
+    }
+
+
 }

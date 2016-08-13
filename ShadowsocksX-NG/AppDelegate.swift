@@ -180,7 +180,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 ProxyConfHelper.enableBypassChina()
             } else if mode == "cow"{
                 generateCowLauchAgentPlist()
-//                ProxyConfHelper.enableBypassChina()
+                ProxyConfHelper.enableCowProxy()
             }
         } else {
             StopSSLocal()
