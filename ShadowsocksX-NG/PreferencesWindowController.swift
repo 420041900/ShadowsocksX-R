@@ -46,17 +46,23 @@ class PreferencesWindowController: NSWindowController
         profileMgr = ServerProfileManager.instance
         
         methodTextField.addItemsWithObjectValues([
+            "table",
+            "rc4",
+            "rc4-md5",
+            "rc4-md5-6",
             "aes-128-cfb",
             "aes-192-cfb",
             "aes-256-cfb",
-            "des-cfb",
+            "aes-128-ctr",
+            "aes-192-ctr",
+            "aes-256-ctr",
             "bf-cfb",
-            "cast5-cfb",
-            "rc4-md5",
-            "chacha20",
+            "camellia-128-cfb",
+            "camellia-192-cfb",
+            "camellia-256-cfb",
             "salsa20",
-            "rc4",
-            "table",
+            "chacha20",
+            "chacha20-ietf",
             ])
 
         obfsfield.addItemsWithObjectValues([
@@ -64,7 +70,6 @@ class PreferencesWindowController: NSWindowController
             "http_simple",
             "tls_simple",
             "random_head",
-            "tls1.0_session_auth",
             "tls1.2_ticket_auth"
             ])
 
