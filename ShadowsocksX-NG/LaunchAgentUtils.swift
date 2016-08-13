@@ -161,8 +161,9 @@ func SyncSSLocal() {
     changed = changed || generateSSLocalLauchAgentPlist()
     let mgr = ServerProfileManager.instance
     if mgr.activeProfileId != nil {
-        changed = changed || writeSSLocalConfFile((mgr.getActiveProfile()?.toJsonConfig())!)
-        
+        if let profile = mgr.getActiveProfile(){
+            changed = changed || writeSSLocalConfFile(profile.toJsonConfig())
+        }
         let on = NSUserDefaults.standardUserDefaults().boolForKey("ShadowsocksOn")
         if on {
             StartSSLocal()

@@ -11,13 +11,13 @@
                 <outlet property="emptylabel" destination="J2t-DL-Ekz" id="GhQ-eV-DyP"/>
                 <outlet property="hostTextField" destination="R4F-j7-GkK" id="a1I-WO-Qdj"/>
                 <outlet property="methodTextField" destination="ef4-8J-eFn" id="OXd-fC-ICR"/>
-                <outlet property="obfsfield" destination="6QG-vW-5Lt" id="fWG-mh-Hu4"/>
+                <outlet property="obfsfield" destination="KeX-wN-6Sg" id="6Ll-sB-1HF"/>
                 <outlet property="obfspara" destination="WIv-aw-SFG" id="BIF-lA-OJB"/>
                 <outlet property="passwordTextField" destination="ZXA-oi-Zv3" id="qK5-Uq-hyb"/>
                 <outlet property="portTextField" destination="lng-AE-g0J" id="7b1-ox-WSL"/>
                 <outlet property="profileBox" destination="oZ5-85-pwY" id="D19-PQ-X7E"/>
                 <outlet property="profilesTableView" destination="r91-ho-Lum" id="TNk-f6-Vgo"/>
-                <outlet property="protocolfield" destination="KeX-wN-6Sg" id="mdo-E6-gtU"/>
+                <outlet property="protocolfield" destination="6QG-vW-5Lt" id="4G0-pe-FHI"/>
                 <outlet property="remarkTextField" destination="q3C-S0-iNn" id="DSv-lV-PX7"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
@@ -28,7 +28,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="423" y="365" width="592" height="431"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="592" height="431"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -267,7 +267,7 @@
                                         <constraint firstAttribute="width" constant="86" id="2x0-Lv-7Ye"/>
                                         <constraint firstAttribute="height" constant="17" id="ia9-mR-djC"/>
                                     </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="protocol:" id="yJ4-7n-yhc">
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="obfs" id="yJ4-7n-yhc">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -291,7 +291,7 @@
                                         <constraint firstAttribute="width" constant="86" id="1dL-mA-PYl"/>
                                         <constraint firstAttribute="height" constant="17" id="rDM-xN-vzc"/>
                                     </constraints>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="obfs:" id="nXF-vK-BH8">
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="protocol:" id="nXF-vK-BH8">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
