@@ -158,7 +158,7 @@
     NSString* urlString = [NSString stringWithFormat:@"%@/.ShadowsocksX-NG", NSHomeDirectory()];
     NSUInteger port = [[NSUserDefaults standardUserDefaults]integerForKey:@"LocalSocks5.ListenPort"];
     if ([[[NSUserDefaults standardUserDefaults]stringForKey:@"LocalSocks5.ListenPort"] isEqualToString:@"cow"])
-        port = 7777;
+        urlString = @"http://127.0.0.1:7777/pac";
     NSMutableArray* args = [@[@"--mode", @"off"
                               , @"--port", [NSString stringWithFormat:@"%lu", (unsigned long)port]
                               , @"--pac-url", urlString
