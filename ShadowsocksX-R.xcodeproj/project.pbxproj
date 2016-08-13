@@ -10,6 +10,8 @@
 		091C90411D5CCD77004FA23A /* cow in Resources */ = {isa = PBXBuildFile; fileRef = 091C90401D5CCD77004FA23A /* cow */; };
 		091C90431D5CCDB8004FA23A /* cow.conf in Resources */ = {isa = PBXBuildFile; fileRef = 091C90421D5CCDB8004FA23A /* cow.conf */; };
 		093607491D5C161B00BF8C88 /* bypasschina.txt in Resources */ = {isa = PBXBuildFile; fileRef = 093607481D5C161B00BF8C88 /* bypasschina.txt */; };
+		09E29E5C1D5DB60E00EC02EA /* cow_agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E29E591D5DB1FB00EC02EA /* cow_agent.swift */; };
+		09E29E5D1D5EDCE200EC02EA /* cow.sh in Resources */ = {isa = PBXBuildFile; fileRef = 09E29E581D5DAFAD00EC02EA /* cow.sh */; };
 		258E511BA910B0521B24DAB8 /* Pods_ShadowsocksX_NG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283ED1A8E9B711AC65670031 /* Pods_ShadowsocksX_NG.framework */; };
 		9B07EFA71D048BBB0052D9DF /* ss-local in Resources */ = {isa = PBXBuildFile; fileRef = 9B07EFA61D048BBB0052D9DF /* ss-local */; };
 		9B07EFAC1D048E880052D9DF /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B07EFA81D048E880052D9DF /* menu_icon@2x.png */; };
@@ -94,6 +96,8 @@
 		091C90401D5CCD77004FA23A /* cow */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = cow; sourceTree = "<group>"; };
 		091C90421D5CCDB8004FA23A /* cow.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cow.conf; sourceTree = "<group>"; };
 		093607481D5C161B00BF8C88 /* bypasschina.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bypasschina.txt; sourceTree = "<group>"; };
+		09E29E581D5DAFAD00EC02EA /* cow.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = cow.sh; sourceTree = "<group>"; };
+		09E29E591D5DB1FB00EC02EA /* cow_agent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cow_agent.swift; sourceTree = "<group>"; };
 		09F561671D5B1B9900CC31B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PreferencesWindowController.strings"; sourceTree = "<group>"; };
 		19083CFCED87354F006967FF /* Pods_ShadowsocksX_NGUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksX_NGUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E7783AEDB4A3BDDC9FF16AC /* libPods-proxy_conf_helper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-proxy_conf_helper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +207,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09E29E571D5DAF1E00EC02EA /* cow */ = {
+			isa = PBXGroup;
+			children = (
+				091C90401D5CCD77004FA23A /* cow */,
+				091C90421D5CCDB8004FA23A /* cow.conf */,
+				09E29E581D5DAFAD00EC02EA /* cow.sh */,
+				09E29E591D5DB1FB00EC02EA /* cow_agent.swift */,
+			);
+			name = cow;
+			sourceTree = "<group>";
+		};
 		33F4F299F89330966F4526E4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +236,7 @@
 		9B07EFB01D048E900052D9DF /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				09E29E571D5DAF1E00EC02EA /* cow */,
 				093607481D5C161B00BF8C88 /* bypasschina.txt */,
 				9BE8FBBD1D0B1FB900CAFD01 /* libcrypto.1.0.0.dylib */,
 				9B172A6C1D0ADDDD00B87B9A /* Localizable.strings */,
@@ -230,8 +246,6 @@
 				9B3FFF371D08CF110019A709 /* qrcode.htm */,
 				9B3FFF281D08A1DF0019A709 /* user-rule.txt */,
 				9B3FFF261D0898EB0019A709 /* gfwlist.txt */,
-				091C90401D5CCD77004FA23A /* cow */,
-				091C90421D5CCDB8004FA23A /* cow.conf */,
 				9B3FFF221D088E8D0019A709 /* abp.js */,
 				9B07EFA61D048BBB0052D9DF /* ss-local */,
 				9B07EFA81D048E880052D9DF /* menu_icon@2x.png */,
@@ -460,6 +474,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09E29E5D1D5EDCE200EC02EA /* cow.sh in Resources */,
 				9BE8FBBF1D0B211600CAFD01 /* libcrypto.1.0.0.dylib in Resources */,
 				9B3FFF541D09E2D10019A709 /* proxy_conf_helper in Resources */,
 				9BEEF0691D04D4D500FC52B3 /* install_ss_local.sh in Resources */,
@@ -640,6 +655,7 @@
 				9BEEF0701D04DDB100FC52B3 /* ServerProfileManager.swift in Sources */,
 				9BEEF07B1D05631500FC52B3 /* AdvPreferencesWindowController.swift in Sources */,
 				9BEEF06E1D04DCE400FC52B3 /* ServerProfile.swift in Sources */,
+				09E29E5C1D5DB60E00EC02EA /* cow_agent.swift in Sources */,
 				9B3FFF0D1D05FEB30019A709 /* Utils.swift in Sources */,
 				9BEEF0751D04EF3E00FC52B3 /* PreferencesWindowController.swift in Sources */,
 				9B0BFFE91D0460A70040E62B /* AppDelegate.swift in Sources */,

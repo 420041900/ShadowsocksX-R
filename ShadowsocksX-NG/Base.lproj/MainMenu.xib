@@ -16,6 +16,7 @@
                 <outlet property="RunningStatusMenuItem" destination="fzk-mE-CEV" id="R4x-gK-Qcw"/>
                 <outlet property="autoModeMenuItem" destination="r07-Gu-aEz" id="9aH-pQ-Rgi"/>
                 <outlet property="bypasschinaModeMenuItem" destination="yp4-NV-9i8" id="6Fc-aq-cpU"/>
+                <outlet property="cowModeMenuItem" destination="duH-d6-vNX" id="cRB-XQ-xaA"/>
                 <outlet property="globalModeMenuItem" destination="Mw3-Jm-eXA" id="ar5-Yx-3ze"/>
                 <outlet property="lanchAtLoginMenuItem" destination="eUq-p7-ICK" id="w4p-0c-DZn"/>
                 <outlet property="manualModeMenuItem" destination="8PR-gs-c5N" id="9qz-mU-5kt"/>
@@ -68,6 +69,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="selectManualMode:" target="Voe-Tx-rLC" id="Xxb-28-6fi"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="COW-Experimental" id="duH-d6-vNX">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="selectCowMode:" target="Voe-Tx-rLC" id="mJb-RP-2Ja"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="V92-VH-Agn"/>

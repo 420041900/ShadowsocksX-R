@@ -31,6 +31,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBOutlet weak var manualModeMenuItem: NSMenuItem!
     @IBOutlet weak var bypasschinaModeMenuItem: NSMenuItem!
     
+    @IBOutlet weak var cowModeMenuItem: NSMenuItem!
+
     @IBOutlet weak var serversMenuItem: NSMenuItem!
     @IBOutlet var showQRCodeMenuItem: NSMenuItem!
     @IBOutlet var scanQRCodeMenuItem: NSMenuItem!
@@ -44,7 +46,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         // Insert code here to initialize your application
         
         NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
-        
         // Prepare ss-local
         InstallSSLocal()
         
@@ -151,6 +152,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
+        StopCow()
     }
     
     func applyConfig() {
@@ -164,7 +166,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         let defaults = NSUserDefaults.standardUserDefaults()
         let isOn = defaults.boolForKey("ShadowsocksOn")
         let mode = defaults.stringForKey("ShadowsocksRunningMode")
-        
+
+        StopCow()
         if isOn {
             StartSSLocal()
             if mode == "auto" {
@@ -175,6 +178,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 ProxyConfHelper.disableProxy()
             } else if mode == "bypasschina"{
                 ProxyConfHelper.enableBypassChina()
+            } else if mode == "cow"{
+                generateCowLauchAgentPlist()
+//                ProxyConfHelper.enableBypassChina()
             }
         } else {
             StopSSLocal()
@@ -271,10 +277,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
 
     @IBAction func selectByPassMode(sender: NSMenuItem) {
         let defaults = NSUserDefaults.standardUserDefaults()
+        if defaults.stringForKey("ShadowsocksRunningMode")=="cow"{StopCow()}
         defaults.setValue("bypasschina", forKey: "ShadowsocksRunningMode")
         updateRunningModeMenu()
         applyConfig()
     }
+
+    @IBAction func selectCowMode(sender: NSMenuItem) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue("cow", forKey: "ShadowsocksRunningMode")
+        updateRunningModeMenu()
+        applyConfig()
+    }
+
+
     @IBAction func editServerPreferences(sender: NSMenuItem) {
         if preferencesWinCtrl != nil {
             preferencesWinCtrl.close()
@@ -355,25 +371,35 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             globalModeMenuItem.state = 0
             manualModeMenuItem.state = 0
             bypasschinaModeMenuItem.state = 0
+            cowModeMenuItem.state = 0
         } else if mode == "global" {
             proxyMenuItem.title = "Proxy - Global".localized
             autoModeMenuItem.state = 0
             globalModeMenuItem.state = 1
             manualModeMenuItem.state = 0
             bypasschinaModeMenuItem.state = 0
+            cowModeMenuItem.state = 0
         } else if mode == "manual" {
             proxyMenuItem.title = "Proxy - Manual".localized
             autoModeMenuItem.state = 0
             globalModeMenuItem.state = 0
             manualModeMenuItem.state = 1
             bypasschinaModeMenuItem.state = 0
-        } else if mode == "bypasschina"{
+            cowModeMenuItem.state = 0
+        } else if mode == "bypasschina" {
             proxyMenuItem.title = "Proxy - ByPassChina".localized
             autoModeMenuItem.state = 0
             globalModeMenuItem.state = 0
             manualModeMenuItem.state = 0
             bypasschinaModeMenuItem.state = 1
-
+            cowModeMenuItem.state = 0
+        }else if mode == "cow"{
+            proxyMenuItem.title = "Proxy - COW".localized
+            autoModeMenuItem.state = 0
+            globalModeMenuItem.state = 0
+            manualModeMenuItem.state = 0
+            bypasschinaModeMenuItem.state = 0
+            cowModeMenuItem.state = 1
         }
     }
     
