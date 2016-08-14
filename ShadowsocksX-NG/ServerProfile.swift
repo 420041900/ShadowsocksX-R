@@ -137,16 +137,23 @@ class ServerProfile: NSObject {
         return true
     }
 
-    func base64(string:String)->String{
+    func base64(string:String,url_safe:Bool=true)->String{
 
-        return string.dataUsingEncoding(NSUTF8StringEncoding)!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
-
+        var encode_str = string.dataUsingEncoding(NSUTF8StringEncoding)!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+        if(url_safe){
+            encode_str = encode_str.stringByReplacingOccurrencesOfString("+", withString: "-")
+            encode_str = encode_str.stringByReplacingOccurrencesOfString("/", withString: "_")
+            encode_str = encode_str.stringByReplacingOccurrencesOfString("=", withString: "");
+        }
+        return encode_str
     }
     
     func URL() -> NSURL? {
-//        let parts = "\(method):\(password)@\(serverHost):\(serverPort)"
 //        服务器:端口:协议:加密方式:混淆方式:base64（密码）？obfsparam= Base64(混淆参数)&remarks=Base64(备注)
-
+        if obfs == "plain" && protocols == "origin"{
+            let parts = "\(method):\(password)@\(serverHost):\(serverPort)"
+            return NSURL(string: "ss://\(base64(parts,url_safe: false))")
+        }
         let parts = "\(serverHost):\(serverPort):\(protocols):\(method):\(obfs):\(base64(password))?obfsparam=\(base64(obfspara))&remarks=\(base64(remark))"
             return NSURL(string: "ssr://\(base64(parts))")
     }

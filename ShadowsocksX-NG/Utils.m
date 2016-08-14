@@ -54,10 +54,11 @@ void ScanQRCodeOnScreen() {
         NSArray *features = [detector featuresInImage:[CIImage imageWithCGImage:image]];
         for (CIQRCodeFeature *feature in features) {
 //            NSLog(@"%@", feature.messageString);
-            if ( [feature.messageString hasPrefix:@"ssr://"] )
+            if ( [feature.messageString hasPrefix:@"ssr://"] ||[feature.messageString hasPrefix:@"ss://"])
             {
                 [foundSSUrls addObject:[NSURL URLWithString:feature.messageString]];
             }
+
         }
     }
     
@@ -81,7 +82,7 @@ NSString* decode64(NSString* str){
         str = [str stringByPaddingToLength: length withString:@"=" startingAtIndex:0];
     }
     NSData* decodeData = [[NSData alloc] initWithBase64EncodedString:str options:0];
-    NSString* decodeStr = [[NSString alloc] initWithData:decodeData encoding:NSASCIIStringEncoding];
+    NSString* decodeStr = [[NSString alloc] initWithData:decodeData encoding:NSUTF8StringEncoding];
     return decodeStr;
 }
 
@@ -94,7 +95,9 @@ NSDictionary<NSString *, id>* ParseSSOrangeURL(NSURL* url) {
     NSString *urlString = [url absoluteString];
     int i = 0;
     NSString *errorReason = nil;
-    if([[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL ] hasPrefix:@"ss://"]){
+
+    if([urlString hasPrefix:@"ss://"]){
+        NSLog(@"in");
         while(i < 2) {
             if (i == 1) {
                 NSString* host = url.host;
@@ -148,8 +151,6 @@ NSDictionary<NSString *, id>* ParseSSOrangeURL(NSURL* url) {
                      };
         }
 
-    }else if ([[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL ] hasPrefix:@"ssr://"]){
-        NSLog(@"Have One ssr QR coming");
     }
     return nil;
 }
@@ -173,7 +174,6 @@ NSDictionary<NSString *, id>* ParseSSURL(NSURL* url) {
 
     NSArray *configArray = [urlString componentsSeparatedByString:@":"];
 
-    NSLog(@"%@",configArray);
     if(configArray.count<5){
         return nil;
     }

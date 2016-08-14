@@ -68,7 +68,6 @@ class PreferencesWindowController: NSWindowController
         obfsfield.addItemsWithObjectValues([
             "plain",
             "http_simple",
-            "tls_simple",
             "random_head",
             "tls1.2_ticket_auth"
             ])
