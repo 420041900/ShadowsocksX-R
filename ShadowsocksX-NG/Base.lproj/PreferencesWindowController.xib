@@ -11,6 +11,7 @@
                 <outlet property="emptylabel" destination="J2t-DL-Ekz" id="GhQ-eV-DyP"/>
                 <outlet property="hostTextField" destination="R4F-j7-GkK" id="a1I-WO-Qdj"/>
                 <outlet property="methodTextField" destination="ef4-8J-eFn" id="OXd-fC-ICR"/>
+                <outlet property="minusButton" destination="3ei-2f-kHB" id="JVt-FF-07d"/>
                 <outlet property="obfsfield" destination="KeX-wN-6Sg" id="6Ll-sB-1HF"/>
                 <outlet property="obfspara" destination="WIv-aw-SFG" id="BIF-lA-OJB"/>
                 <outlet property="passwordTextField" destination="ZXA-oi-Zv3" id="qK5-Uq-hyb"/>

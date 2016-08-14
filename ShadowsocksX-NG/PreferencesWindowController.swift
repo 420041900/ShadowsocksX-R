@@ -30,6 +30,7 @@ class PreferencesWindowController: NSWindowController
     @IBOutlet weak var obfspara: NSTextField!
 
     @IBOutlet weak var emptylabel: NSTextField!
+    @IBOutlet weak var minusButton: NSButton!
     
     let tableViewDragType: String = "ss.server.profile.data"
     
@@ -186,6 +187,12 @@ class PreferencesWindowController: NSWindowController
 
     
     func updateProfileBoxVisible() {
+        if profileMgr.profiles.count == 1 {
+            minusButton.enabled = false
+        }else{
+            minusButton.enabled = true
+        }
+
         if profileMgr.profiles.isEmpty {
             profileBox.hidden = true
             emptylabel.hidden = false
