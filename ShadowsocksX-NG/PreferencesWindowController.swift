@@ -39,6 +39,7 @@ class PreferencesWindowController: NSWindowController
     
     var editingProfile: ServerProfile!
 
+
     override func windowDidLoad() {
         super.windowDidLoad()
 
@@ -93,6 +94,7 @@ class PreferencesWindowController: NSWindowController
     
     @IBAction func addProfile(sender: NSButton) {
         if editingProfile != nil && !editingProfile.isValid(){
+            shakeWindows()
             return
         }
         profilesTableView.beginUpdates()
@@ -124,37 +126,15 @@ class PreferencesWindowController: NSWindowController
         if editingProfile != nil {
             if !editingProfile.isValid() {
                 // TODO Shake window?
-                let numberOfShakes:Int = 8
-                let durationOfShake:Float = 0.5
-                let vigourOfShake:Float = 0.05
 
-                let frame:CGRect = (window?.frame)!
-                let shakeAnimation = CAKeyframeAnimation()
+                shakeWindows()
 
-                let shakePath = CGPathCreateMutable()
-                CGPathMoveToPoint(shakePath, nil, NSMinX(frame), NSMinY(frame))
-
-                for _ in 1...numberOfShakes{
-                    CGPathAddLineToPoint(shakePath, nil, NSMinX(frame) - frame.size.width * CGFloat(vigourOfShake), NSMinY(frame))
-                    CGPathAddLineToPoint(shakePath, nil, NSMinX(frame) + frame.size.width * CGFloat(vigourOfShake), NSMinY(frame))
-                }
-
-                CGPathCloseSubpath(shakePath)
-                shakeAnimation.path = shakePath
-                shakeAnimation.duration = CFTimeInterval(durationOfShake)
-                window?.animations = ["frameOrigin":shakeAnimation]
-                window?.animator().setFrameOrigin(window!.frame.origin)
                 return
             }
         }
         profileMgr.save()
         window?.performClose(nil)
 
-        if profileMgr.activeProfileId == nil && profileMgr.profiles.count > 0 && editingProfile.isValid(){
-            profileMgr.setActiveProfiledId(editingProfile.uuid)
-            (NSApplication.sharedApplication().delegate as! AppDelegate).updateServersMenu()
-            SyncSSLocal()
-        }
 
         NSNotificationCenter.defaultCenter()
             .postNotificationName(NOTIFY_SERVER_PROFILES_CHANGED, object: nil)
@@ -187,7 +167,7 @@ class PreferencesWindowController: NSWindowController
 
     
     func updateProfileBoxVisible() {
-        if profileMgr.profiles.count == 1 {
+        if profileMgr.profiles.count <= 1 {
             minusButton.enabled = false
         }else{
             minusButton.enabled = true
@@ -361,5 +341,28 @@ class PreferencesWindowController: NSWindowController
                 profilesTableView.selectRowIndexes(index, byExtendingSelection: false)
             }
         }
+    }
+
+    func shakeWindows(){
+        let numberOfShakes:Int = 8
+        let durationOfShake:Float = 0.5
+        let vigourOfShake:Float = 0.05
+
+        let frame:CGRect = (window?.frame)!
+        let shakeAnimation = CAKeyframeAnimation()
+
+        let shakePath = CGPathCreateMutable()
+        CGPathMoveToPoint(shakePath, nil, NSMinX(frame), NSMinY(frame))
+
+        for _ in 1...numberOfShakes{
+            CGPathAddLineToPoint(shakePath, nil, NSMinX(frame) - frame.size.width * CGFloat(vigourOfShake), NSMinY(frame))
+            CGPathAddLineToPoint(shakePath, nil, NSMinX(frame) + frame.size.width * CGFloat(vigourOfShake), NSMinY(frame))
+        }
+
+        CGPathCloseSubpath(shakePath)
+        shakeAnimation.path = shakePath
+        shakeAnimation.duration = CFTimeInterval(durationOfShake)
+        window?.animations = ["frameOrigin":shakeAnimation]
+        window?.animator().setFrameOrigin(window!.frame.origin)
     }
 }
