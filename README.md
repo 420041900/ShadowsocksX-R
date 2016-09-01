@@ -1,3 +1,5 @@
+此版本为个性开发版,添加了当前的网络速度显示
+
 # ShadowsocksX-NG
 
 Current version is 1.2
