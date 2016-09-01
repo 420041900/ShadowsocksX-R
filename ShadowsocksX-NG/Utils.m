@@ -22,7 +22,7 @@ void ScanQRCodeOnScreen() {
     /* If we are getting an error here then their won't be much to display. */
     if(err != CGDisplayNoErr)
     {
-        NSLog(@"Could not get active display count (%d)\n", err);
+        //NSLog(@"Could not get active display count (%d)\n", err);
         return;
     }
     
@@ -37,7 +37,7 @@ void ScanQRCodeOnScreen() {
     /* More error-checking here. */
     if(err != CGDisplayNoErr)
     {
-        NSLog(@"Could not get active display list (%d)\n", err);
+        //NSLog(@"Could not get active display list (%d)\n", err);
         return;
     }
     
@@ -53,7 +53,7 @@ void ScanQRCodeOnScreen() {
         CGImageRef image = CGDisplayCreateImage(displays[displaysIndex]);
         NSArray *features = [detector featuresInImage:[CIImage imageWithCGImage:image]];
         for (CIQRCodeFeature *feature in features) {
-//            NSLog(@"%@", feature.messageString);
+//            //NSLog(@"%@", feature.messageString);
             if ( [feature.messageString hasPrefix:@"ssr://"] ||[feature.messageString hasPrefix:@"ss://"])
             {
                 [foundSSUrls addObject:[NSURL URLWithString:feature.messageString]];
@@ -97,7 +97,7 @@ NSDictionary<NSString *, id>* ParseSSOrangeURL(NSURL* url) {
     NSString *errorReason = nil;
 
     if([urlString hasPrefix:@"ss://"]){
-        NSLog(@"in");
+        //NSLog(@"in");
         while(i < 2) {
             if (i == 1) {
                 NSString* host = url.host;

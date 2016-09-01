@@ -48,14 +48,14 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:kShadowsocksHelper] || ![self isVersionOk]) {
         NSString *helperPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], @"install_helper.sh"];
-        NSLog(@"run install script: %@", helperPath);
+        //NSLog(@"run install script: %@", helperPath);
         NSDictionary *error;
         NSString *script = [NSString stringWithFormat:@"do shell script \"bash %@\" with administrator privileges", helperPath];
         NSAppleScript *appleScript = [[NSAppleScript new] initWithSource:script];
         if ([appleScript executeAndReturnError:&error]) {
-            NSLog(@"installation success");
+            //NSLog(@"installation success");
         } else {
-            NSLog(@"installation failure");
+            //NSLog(@"installation failure");
         }
     }
 }
@@ -66,7 +66,7 @@
     [task setLaunchPath:kShadowsocksHelper];
 
     // this log is very important
-    NSLog(@"run shadowsocks helper: %@", kShadowsocksHelper);
+    //NSLog(@"run shadowsocks helper: %@", kShadowsocksHelper);
     [task setArguments:arguments];
 
     NSPipe *stdoutpipe;
@@ -88,14 +88,14 @@
     NSString *string;
     string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if (string.length > 0) {
-        NSLog(@"%@", string);
+        //NSLog(@"%@", string);
     }
 
     file = [stderrpipe fileHandleForReading];
     data = [file readDataToEndOfFile];
     string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if (string.length > 0) {
-        NSLog(@"%@", string);
+        //NSLog(@"%@", string);
     }
 }
 

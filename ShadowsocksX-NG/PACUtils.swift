@@ -87,7 +87,7 @@ func GeneratePACFile() -> Bool {
                 
                 lines += userRuleLines
             } catch {
-                NSLog("Not found user-rule.txt")
+                //NSLog("Not found user-rule.txt")
             }
             
             // Filter empty and comment lines
@@ -141,7 +141,7 @@ func GeneratePACFile() -> Bool {
         }
         
     } catch {
-        NSLog("Not found gfwlist.txt")
+        //NSLog("Not found gfwlist.txt")
     }
 
         return false

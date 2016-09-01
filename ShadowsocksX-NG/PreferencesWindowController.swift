@@ -156,9 +156,9 @@ class PreferencesWindowController: NSWindowController
                 pboard.clearContents()
                 let rs = pboard.writeObjects([url])
                 if rs {
-                    NSLog("copy to pasteboard success")
+                    //NSLog("copy to pasteboard success")
                 } else {
-                    NSLog("copy to pasteboard failed")
+                    //NSLog("copy to pasteboard failed")
                 }
             }
         }
@@ -184,7 +184,7 @@ class PreferencesWindowController: NSWindowController
     }
     
     func bindProfile(index:Int) {
-        NSLog("bind profile \(index)")
+        //NSLog("bind profile \(index)")
         if index >= 0 && index < profileMgr.profiles.count {
             editingProfile = profileMgr.profiles[index]
             

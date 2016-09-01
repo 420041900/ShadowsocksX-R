@@ -91,11 +91,11 @@ int main(int argc, const char * argv[])
     OSStatus authErr = AuthorizationCreate(nil, kAuthorizationEmptyEnvironment, authFlags, &authRef);
     if (authErr != noErr) {
         authRef = nil;
-        NSLog(@"Error when create authorization");
+        //NSLog(@"Error when create authorization");
         return 1;
     } else {
         if (authRef == NULL) {
-            NSLog(@"No authorization has been granted to modify network configuration");
+            //NSLog(@"No authorization has been granted to modify network configuration");
             return 1;
         }
         
@@ -114,7 +114,7 @@ int main(int argc, const char * argv[])
         for (NSString *key in [sets allKeys]) {
             NSMutableDictionary *dict = [sets objectForKey:key];
             NSString *hardware = [dict valueForKeyPath:@"Interface.Hardware"];
-            //        NSLog(@"%@", hardware);
+            //        //NSLog(@"%@", hardware);
             BOOL modify = NO;
             if ([networkServiceKeys count] > 0) {
                 if ([networkServiceKeys containsObject:key]) {

@@ -78,9 +78,9 @@ func ReloadConfSSLocal() {
     let task = NSTask.launchedTaskWithLaunchPath(installerPath!, arguments: [""])
     task.waitUntilExit()
     if task.terminationStatus == 0 {
-        NSLog("Start ss-local succeeded.")
+//        //NSLog("Start ss-local succeeded.")
     } else {
-        NSLog("Start ss-local failed.")
+//        //NSLog("Start ss-local failed.")
     }
 }
 
@@ -90,9 +90,9 @@ func StartSSLocal() {
     let task = NSTask.launchedTaskWithLaunchPath(installerPath!, arguments: [""])
     task.waitUntilExit()
     if task.terminationStatus == 0 {
-        NSLog("Start ss-local succeeded.")
+//        //NSLog("Start ss-local succeeded.")
     } else {
-        NSLog("Start ss-local failed.")
+//        //NSLog("Start ss-local failed.")
     }
 }
 
@@ -102,9 +102,9 @@ func StopSSLocal() {
     let task = NSTask.launchedTaskWithLaunchPath(installerPath!, arguments: [""])
     task.waitUntilExit()
     if task.terminationStatus == 0 {
-        NSLog("Stop ss-local succeeded.")
+        //NSLog("Stop ss-local succeeded.")
     } else {
-        NSLog("Stop ss-local failed.")
+        //NSLog("Stop ss-local failed.")
     }
 }
 
@@ -119,9 +119,9 @@ func InstallSSLocal() {
         let task = NSTask.launchedTaskWithLaunchPath(installerPath!, arguments: [""])
         task.waitUntilExit()
         if task.terminationStatus == 0 {
-            NSLog("Install ss-local succeeded.")
+            //NSLog("Install ss-local succeeded.")
         } else {
-            NSLog("Install ss-local failed.")
+            //NSLog("Install ss-local failed.")
         }
     }
 }
@@ -142,7 +142,7 @@ func writeSSLocalConfFile(conf:[String:AnyObject]) -> Bool {
         
         return true
     } catch {
-        NSLog("Write ss-local file failed.")
+        //NSLog("Write ss-local file failed.")
     }
     return false
 }
