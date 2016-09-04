@@ -55,6 +55,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             "ShadowsocksRunningMode": "auto",
             "LocalSocks5.ListenPort": NSNumber(unsignedShort: 1086),
             "LocalSocks5.ListenAddress": "127.0.0.1",
+            "PacServer.ListenAddress": "127.0.0.1",
+            "PacServer.ListenPort":NSNumber(unsignedShort: 8090),
             "LocalSocks5.Timeout": NSNumber(unsignedInteger: 60),
             "LocalSocks5.EnableUDPRelay": NSNumber(bool: false),
             "LocalSocks5.EnableVerboseMode": NSNumber(bool: false),
@@ -94,6 +96,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             , usingBlock: {
             (note) in
                 SyncSSLocal()
+                self.applyConfig()
             }
         )
         notifyCenter.addObserverForName("NOTIFY_FOUND_SS_URL", object: nil, queue: nil) {
@@ -159,6 +162,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
         StopSSLocal()
+        ProxyConfHelper.disableProxy("hi")
     }
     
     func applyConfig() {
@@ -176,17 +180,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         if isOn {
             StartSSLocal()
             if mode == "auto" {
-                ProxyConfHelper.enablePACProxy()
+                ProxyConfHelper.enablePACProxy("hi")
             } else if mode == "global" {
                 ProxyConfHelper.enableGlobalProxy()
             } else if mode == "manual" {
-                ProxyConfHelper.disableProxy()
+                ProxyConfHelper.disableProxy("hi")
             } else if mode == "bypasschina"{
+                ProxyConfHelper.disableProxy("hi")
                 ProxyConfHelper.enableBypassChina()
             }
         } else {
             StopSSLocal()
-            ProxyConfHelper.disableProxy()
+            ProxyConfHelper.disableProxy("hi")
         }
 
     }
