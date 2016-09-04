@@ -142,8 +142,8 @@ GCDWebServer *webServer =nil;
 + (void)enableBypassChina{
 
     NSString* urlString = [NSString stringWithFormat:@"%@/.ShadowsocksX-NG/bypasschina.pac", NSHomeDirectory()];
-    NSURL* url = [NSURL fileURLWithPath:urlString];
-    [self startPACServer:url.absoluteString];
+    [self enablePACProxy:urlString];
+
 
 }
 
@@ -173,8 +173,11 @@ GCDWebServer *webServer =nil;
         PACFilePath = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".ShadowsocksX-NG/gfwlist.js"];
         originalPACData = [NSData dataWithContentsOfFile: [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".ShadowsocksX-NG/gfwlist.js"]];
     }else{//用定制路径来代替
-        originalPACData = [NSData dataWithContentsOfFile: [NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), @".ShadowsocksX-NG", PACFilePath]];
-        routerPath = [NSString stringWithFormat:@"/%@",PACFilePath];
+        originalPACData = [NSData dataWithContentsOfFile: PACFilePath];
+        if (originalPACData == nil){
+            NSLog(@"Warning:PAC Data is nil");
+            return 0;
+        }
     }
     [self stopPACServer];
     webServer = [[GCDWebServer alloc] init];

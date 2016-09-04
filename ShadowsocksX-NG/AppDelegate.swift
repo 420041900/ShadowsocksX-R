@@ -163,6 +163,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         // Insert code here to tear down your application
         StopSSLocal()
         ProxyConfHelper.disableProxy("hi")
+        ProxyConfHelper.stopPACServer()
+
+
     }
     
     func applyConfig() {
