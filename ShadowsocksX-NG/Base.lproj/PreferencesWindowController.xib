@@ -29,7 +29,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="423" y="365" width="592" height="431"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="592" height="431"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -403,11 +403,27 @@
                                         <action selector="removeProfile:" target="-2" id="CJC-GL-qeS"/>
                                     </connections>
                                 </button>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cht-L2-3bg">
+                                    <rect key="frame" x="40" y="0.0" width="20" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="19" id="2C7-xU-W6x"/>
+                                        <constraint firstAttribute="width" constant="20" id="Rbb-ef-tLs"/>
+                                    </constraints>
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="copy" imagePosition="left" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="mtq-Lb-jmv">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="copyProfile:" target="-2" id="z3Y-5m-qSg"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="4ig-lF-m2R" firstAttribute="leading" secondItem="MbP-FS-YEs" secondAttribute="leading" id="4LS-4s-juZ"/>
                                 <constraint firstItem="3ei-2f-kHB" firstAttribute="leading" secondItem="MbP-FS-YEs" secondAttribute="leading" constant="20" id="Bg9-xR-s9J"/>
                                 <constraint firstItem="4ig-lF-m2R" firstAttribute="top" secondItem="MbP-FS-YEs" secondAttribute="top" id="K3e-YE-uO5"/>
+                                <constraint firstItem="Cht-L2-3bg" firstAttribute="top" secondItem="MbP-FS-YEs" secondAttribute="top" id="SE4-jC-8NY"/>
+                                <constraint firstItem="Cht-L2-3bg" firstAttribute="leading" secondItem="3ei-2f-kHB" secondAttribute="trailing" id="V9D-1r-CIO"/>
                                 <constraint firstItem="3ei-2f-kHB" firstAttribute="top" secondItem="MbP-FS-YEs" secondAttribute="top" id="ydr-AN-ver"/>
                             </constraints>
                         </view>
@@ -479,5 +495,6 @@ DQ
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="copy" width="16" height="16"/>
     </resources>
 </document>

@@ -121,7 +121,34 @@ class PreferencesWindowController: NSWindowController
         }
         updateProfileBoxVisible()
     }
-    
+
+
+    @IBAction func copyProfile(sender: NSButton) {
+        if editingProfile != nil && !editingProfile.isValid(){
+            shakeWindows()
+            return
+        }
+        let profile = ServerProfile()
+        profile.remark = editingProfile.remark + "New Server".localized
+        profile.serverHost = editingProfile.serverHost
+        profile.serverPort = editingProfile.serverPort
+        profile.password = editingProfile.password
+        profile.protocols = editingProfile.protocols
+        profile.obfs = editingProfile.obfs
+        profile.obfspara = editingProfile.obfspara
+
+        profileMgr.profiles.append(profile)
+        profilesTableView.beginUpdates()
+
+        let index = NSIndexSet(index: profileMgr.profiles.count-1)
+        profilesTableView.insertRowsAtIndexes(index, withAnimation: .EffectFade)
+
+        self.profilesTableView.scrollRowToVisible(self.profileMgr.profiles.count-1)
+        self.profilesTableView.selectRowIndexes(index, byExtendingSelection: false)
+        profilesTableView.endUpdates()
+        updateProfileBoxVisible()
+    }
+
     @IBAction func ok(sender: NSButton) {
         if editingProfile != nil {
             if !editingProfile.isValid() {
