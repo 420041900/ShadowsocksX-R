@@ -32,6 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBOutlet weak var bypasschinaModeMenuItem: NSMenuItem!
     
     @IBOutlet weak var serversMenuItem: NSMenuItem!
+    @IBOutlet var pingserverMenuItem: NSMenuItem!
     @IBOutlet var showQRCodeMenuItem: NSMenuItem!
     @IBOutlet var scanQRCodeMenuItem: NSMenuItem!
     @IBOutlet var serversPreferencesMenuItem: NSMenuItem!
@@ -42,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
-        
+//        PingServers.instance.ping()
         NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
         
         // Prepare ss-local
@@ -335,6 +336,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             SyncSSLocal()
         }
     }
+
+    @IBAction func doPingTest(sender: AnyObject) {
+        PingServers.instance.ping()
+    }
     
     @IBAction func showLogs(sender: NSMenuItem) {
         let ws = NSWorkspace.sharedWorkspace()
@@ -415,7 +420,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         let showQRItem = showQRCodeMenuItem
         let scanQRItem = scanQRCodeMenuItem
         let preferencesItem = serversPreferencesMenuItem
-        
+        let pingItem = pingserverMenuItem
+
         var i = 0
         for p in mgr.profiles {
             let item = NSMenuItem()
@@ -425,6 +431,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             } else {
                 item.title = "\(p.remark) (\(p.serverHost):\(p.serverPort))"
             }
+
+            if let latency = p.latency{
+                item.title += "  -\(latency)ms"
+            }
+
             if mgr.activeProfileId == p.uuid {
                 item.state = 1
             }
@@ -443,6 +454,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         serversMenuItem.submenu?.addItem(scanQRItem)
         serversMenuItem.submenu?.addItem(NSMenuItem.separatorItem())
         serversMenuItem.submenu?.addItem(preferencesItem)
+        serversMenuItem.submenu?.addItem(pingItem)
+
     }
     
     func handleURLEvent(event: NSAppleEventDescriptor, withReplyEvent replyEvent: NSAppleEventDescriptor) {

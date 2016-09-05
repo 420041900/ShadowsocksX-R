@@ -58,15 +58,61 @@ extension SimplePingClient: SimplePingDelegate {
     public func simplePing(pinger: SimplePing, didReceivePingResponsePacket packet: NSData, sequenceNumber: UInt16 ){
         pinger.stop()
 
-        guard let dateReference = dateReference else {
-            print("fail")
-            return }
+        guard let dateReference = dateReference else{return }
 
         //timeIntervalSinceDate returns seconds, so we convert to milis
         let latency = NSDate().timeIntervalSinceDate(dateReference) * 1000
         resultCallback?(String(format: "%.f", latency))
     }
 }
+
+
+
+
+class PingServers:NSObject{
+    static let instance = PingServers()
+
+    let SerMgr = ServerProfileManager.instance
+    var fastest:String?
+    var fastest_id : Int=0
+
+    func ping(i:Int=0){
+        if i == 0{
+            fastest_id = 0
+            fastest = nil
+        }
+
+        if i >= SerMgr.profiles.count{
+            (NSApplication.sharedApplication().delegate as! AppDelegate).updateServersMenu()
+            let notice = NSUserNotification()
+            notice.title = "Ping测试完成！"
+            notice.subtitle = "最快的是\(SerMgr.profiles[fastest_id].remark) \(SerMgr.profiles[fastest_id].serverHost) \(SerMgr.profiles[fastest_id].latency!)ms"
+            NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notice)
+            return
+        }
+        let host = SerMgr.profiles[i].serverHost
+        SimplePingClient.pingHostname(host) { latency in
+            print("-----------\(host) latency is \(latency ?? "fail")")
+            self.SerMgr.profiles[i].latency = latency ?? "fail"
+
+            if latency != nil {
+                if self.fastest == nil{
+                    self.fastest = latency
+                    self.fastest_id = i
+                }else{
+                    if latency < self.fastest{
+                        self.fastest = latency
+                        self.fastest_id = i
+                    }
+                }
+            }
+
+            self.ping(i+1)
+        }
+    }
+}
+
+
 
 
 
