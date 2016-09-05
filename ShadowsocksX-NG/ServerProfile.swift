@@ -24,6 +24,8 @@ class ServerProfile: NSObject {
     var obfspara:String = ""
     var protocols:String = "origin"
 
+    var latency:String?
+
     override init() {
         uuid = NSUUID().UUIDString
     }

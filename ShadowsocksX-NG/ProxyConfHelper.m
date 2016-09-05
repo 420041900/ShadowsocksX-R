@@ -179,6 +179,7 @@ GCDWebServer *webServer =nil;
             return 0;
         }
     }
+    [GCDWebServer setLogLevel:4];
     [self stopPACServer];
     webServer = [[GCDWebServer alloc] init];
     [webServer addHandlerForMethod:@"GET" path:routerPath requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse *(GCDWebServerRequest *request) {
