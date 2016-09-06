@@ -39,6 +39,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     @IBOutlet weak var lanchAtLoginMenuItem: NSMenuItem!
     
+    var statusItemView:StatusItemView!
+    
     var statusItem: NSStatusItem!
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -65,12 +67,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             "AutoConfigureNetworkServices": NSNumber(bool: true)
         ])
         
-        statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(20)
+        statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(85)
         let image = NSImage(named: "menu_icon")
         image?.template = true
         statusItem.image = image
-        statusItem.menu = statusMenu
-        
+//        statusItem.menu = statusMenu
+        statusItemView = StatusItemView(statusItem: statusItem, menu: statusMenu)
+        statusItem.view = statusItemView
+        NetWorkMonitor(statusItemView: statusItemView).start()
         
         let notifyCenter = NSNotificationCenter.defaultCenter()
         notifyCenter.addObserverForName(NOTIFY_ADV_PROXY_CONF_CHANGED, object: nil, queue: nil
@@ -160,6 +164,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         SyncSSLocal()
     }
 
+    
+    
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
         StopSSLocal()
@@ -405,12 +411,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             runningStatusMenuItem.title = "ShadowsocksR: On".localized
             toggleRunningMenuItem.title = "Turn Shadowsocks Off".localized
             let image = NSImage(named: "menu_icon")
-            statusItem.image = image
+            statusItemView.setIcon(image!)
+//            statusItem.image = image
         } else {
             runningStatusMenuItem.title = "ShadowsocksR: Off".localized
             toggleRunningMenuItem.title = "Turn Shadowsocks On".localized
             let image = NSImage(named: "menu_icon_disabled")
-            statusItem.image = image
+//            statusItem.image = image
+            statusItemView.setIcon(image!)
         }
     }
     
