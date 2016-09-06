@@ -8,7 +8,7 @@
 
 import Foundation
 
-let SS_LOCAL_VERSION = "2.6.3"
+let SS_LOCAL_VERSION = "2.6.3.1"
 let APP_SUPPORT_DIR = "/Library/Application Support/ShadowsocksX-R/"
 let LAUNCH_AGENT_DIR = "/Library/LaunchAgents/"
 let LAUNCH_AGENT_CONF_NAME = "com.yicheng.ShadowsocksX-R.local.plist"
@@ -157,6 +157,7 @@ func removeSSLocalConfFile() {
 }
 
 func SyncSSLocal() {
+    StopSSLocal()
     var changed: Bool = false
     changed = changed || generateSSLocalLauchAgentPlist()
     let mgr = ServerProfileManager.instance
@@ -171,7 +172,6 @@ func SyncSSLocal() {
         }
     } else {
         removeSSLocalConfFile()
-        StopSSLocal()
     }
     SyncPac()
 }

@@ -7,10 +7,10 @@
 #  Copyright © 2016年 qiuyuzhou. All rights reserved.
 
 cd `dirname "${BASH_SOURCE[0]}"`
-mkdir -p "$HOME/Library/Application Support/ShadowsocksX-R/ss-local-2.4.8"
-cp -f ss-local "$HOME/Library/Application Support/ShadowsocksX-R/ss-local-2.4.8/"
+mkdir -p "$HOME/Library/Application Support/ShadowsocksX-R/ss-local-2.6.3.1"
+cp -f ss-local "$HOME/Library/Application Support/ShadowsocksX-R/ss-local-2.6.3.1/"
 rm -f "$HOME/Library/Application Support/ShadowsocksX-R/ss-local"
-ln -s "$HOME/Library/Application Support/ShadowsocksX-R/ss-local-2.4.8/ss-local" "$HOME/Library/Application Support/ShadowsocksX-R/ss-local"
+ln -s "$HOME/Library/Application Support/ShadowsocksX-R/ss-local-2.6.3.1/ss-local" "$HOME/Library/Application Support/ShadowsocksX-R/ss-local"
 
 cp -f libcrypto.1.0.0.dylib "$HOME/Library/Application Support/ShadowsocksX-R/"
 
