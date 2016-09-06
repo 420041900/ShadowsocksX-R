@@ -10,21 +10,42 @@ import Foundation
 
 public class NetWorkMonitor: NSObject {
     let statusItemView: StatusItemView
+
+    var thread:NSThread?
+    var timer:NSTimer?
+
     init(statusItemView view: StatusItemView) {
         statusItemView = view
     }
     
     func start() {
-        NSThread(target: self, selector: #selector(startUpdateTimer), object: nil).start()
+        thread = NSThread(target: self, selector: #selector(startUpdateTimer), object: nil)
+        thread?.start()
+        statusItemView.showSpeed = true
     }
     
     func startUpdateTimer() {
-        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(updateNetWorkData), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateNetWorkData), userInfo: nil, repeats: true)
         NSRunLoop.currentRunLoop().run()
     }
-    
+
+    func stop(){
+        thread?.cancel()
+        statusItemView.showSpeed = false
+        
+    }
+
     
     func updateNetWorkData() {
+
+        if NSThread.currentThread().cancelled{
+            timer?.invalidate()
+            timer = nil
+            thread = nil
+            NSThread.exit()
+
+        }
+
         let task = NSTask()
         task.launchPath = "/usr/bin/sar"
         task.arguments = ["-n", "DEV", "1"]

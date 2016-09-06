@@ -24,6 +24,8 @@ public class StatusItemView: NSControl {
     var upRate = "- - KB/s"
     var downRate = "- - KB/s"
     var image = NSImage(named: "menu_icon")
+
+    var showSpeed:Bool = false
     
     init(statusItem aStatusItem: NSStatusItem, menu aMenu: NSMenu) {
         statusItem = aStatusItem
@@ -45,14 +47,15 @@ public class StatusItemView: NSControl {
         
         fontColor = (darkMode||mouseDown) ? NSColor.whiteColor() : NSColor.blackColor()
         let fontAttributes = [NSFontAttributeName: NSFont.systemFontOfSize(fontSize), NSForegroundColorAttributeName: fontColor]
-        
-        let upRateString = NSAttributedString(string: upRate+" ↑", attributes: fontAttributes)
-        let upRateRect = upRateString.boundingRectWithSize(NSSize(width: 100, height: 100), options: .UsesLineFragmentOrigin)
-        upRateString.drawAtPoint(NSMakePoint(bounds.width - upRateRect.width - 5, 10))
-        
-        let downRateString = NSAttributedString(string: downRate+" ↓", attributes: fontAttributes)
-        let downRateRect = downRateString.boundingRectWithSize(NSSize(width: 100, height: 100), options: .UsesLineFragmentOrigin)
-        downRateString.drawAtPoint(NSMakePoint(bounds.width - downRateRect.width - 5, 0))
+        if showSpeed{
+            let upRateString = NSAttributedString(string: upRate+" ↑", attributes: fontAttributes)
+            let upRateRect = upRateString.boundingRectWithSize(NSSize(width: 100, height: 100), options: .UsesLineFragmentOrigin)
+            upRateString.drawAtPoint(NSMakePoint(bounds.width - upRateRect.width - 5, 10))
+
+            let downRateString = NSAttributedString(string: downRate+" ↓", attributes: fontAttributes)
+            let downRateRect = downRateString.boundingRectWithSize(NSSize(width: 100, height: 100), options: .UsesLineFragmentOrigin)
+            downRateString.drawAtPoint(NSMakePoint(bounds.width - downRateRect.width - 5, 0))
+        }
         image?.drawAtPoint(NSPoint(x: 0, y: 0), fromRect: NSRect(x: 0, y: 0, width: bounds.height, height: bounds.height), operation: .CompositeSourceOver, fraction: 1.0)
     }
     
@@ -111,6 +114,7 @@ public class StatusItemView: NSControl {
         self.image = image
         setNeedsDisplay()
     }
+
 }
 
 //action

@@ -70,3 +70,7 @@
 
 /* Class = "NSMenuItem"; title = "绕过中国ip"; ObjectID = "yp4-NV-9i8"; */
 "yp4-NV-9i8.title" = "绕过中国ip";
+
+/* Class = "NSMenuItem"; title = "登录时自动启动"; ObjectID = "4ZM-3c-7G0"; */
+"4ZM-3c-7G0.title" = "显示网速";
+

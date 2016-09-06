@@ -11,7 +11,7 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
-    
+
     var qrcodeWinCtrl: SWBQRCodeWindowController!
     var preferencesWinCtrl: PreferencesWindowController!
     var advPreferencesWinCtrl: AdvPreferencesWindowController!
@@ -38,10 +38,35 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBOutlet var serversPreferencesMenuItem: NSMenuItem!
     
     @IBOutlet weak var lanchAtLoginMenuItem: NSMenuItem!
+    @IBOutlet weak var ShowNetworkSpeedItem: NSMenuItem!
     
     var statusItemView:StatusItemView!
     
-    var statusItem: NSStatusItem!
+    var statusItem: NSStatusItem?
+    var speedMonitor:NetWorkMonitor?
+
+
+    func setUpMenu(showSpeed:Bool){
+        if statusItem == nil{
+            statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(85)
+            let image = NSImage(named: "menu_icon")
+            image?.template = true
+            statusItem!.image = image
+            statusItemView = StatusItemView(statusItem: statusItem!, menu: statusMenu)
+            statusItem!.view = statusItemView
+        }
+        if showSpeed{
+            if speedMonitor == nil{
+                speedMonitor = NetWorkMonitor(statusItemView: statusItemView)
+            }
+            statusItem?.length = 85
+            speedMonitor?.start()
+        }else{
+            speedMonitor?.stop()
+            speedMonitor = nil
+            statusItem?.length = 20
+        }
+    }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
@@ -66,16 +91,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             "GFWListURL": "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt",
             "AutoConfigureNetworkServices": NSNumber(bool: true)
         ])
-        
-        statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(85)
-        let image = NSImage(named: "menu_icon")
-        image?.template = true
-        statusItem.image = image
-//        statusItem.menu = statusMenu
-        statusItemView = StatusItemView(statusItem: statusItem, menu: statusMenu)
-        statusItem.view = statusItemView
-        NetWorkMonitor(statusItemView: statusItemView).start()
-        
+
+
+        setUpMenu(defaults.boolForKey("enable_showSpeed"))
+
+
         let notifyCenter = NSNotificationCenter.defaultCenter()
         notifyCenter.addObserverForName(NOTIFY_ADV_PROXY_CONF_CHANGED, object: nil, queue: nil
             , usingBlock: {
@@ -347,6 +367,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         PingServers.instance.ping()
     }
     
+    @IBAction func showSpeedTap(sender: NSMenuItem) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var enable = defaults.boolForKey("enable_showSpeed")
+        enable = !enable
+        setUpMenu(enable)
+        defaults.setBool(enable, forKey: "enable_showSpeed")
+        updateMainMenu()
+    }
+
     @IBAction func showLogs(sender: NSMenuItem) {
         let ws = NSWorkspace.sharedWorkspace()
         if let appUrl = ws.URLForApplicationWithBundleIdentifier("com.apple.Console") {
@@ -419,6 +448,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             let image = NSImage(named: "menu_icon_disabled")
 //            statusItem.image = image
             statusItemView.setIcon(image!)
+        }
+        let showSpeed = defaults.boolForKey("enable_showSpeed")
+        if showSpeed{
+            ShowNetworkSpeedItem.state = 1
+        }else{
+            ShowNetworkSpeedItem.state = 0
         }
     }
     
