@@ -13,7 +13,8 @@
 		09DBDD581D7EFFD00041C076 /* NetWorkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DBDD561D7EFFD00041C076 /* NetWorkMonitor.swift */; };
 		09DBDD591D7EFFD00041C076 /* StatusItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DBDD571D7EFFD00041C076 /* StatusItemView.swift */; };
 		09DBDD5B1D7EFFE50041C076 /* SystemThemeChangeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DBDD5A1D7EFFE50041C076 /* SystemThemeChangeHelper.swift */; };
-		258E511BA910B0521B24DAB8 /* Pods_ShadowsocksX_NG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283ED1A8E9B711AC65670031 /* Pods_ShadowsocksX_NG.framework */; };
+		10E79BBF7191B4B864515E43 /* Pods_ShadowsocksX_RTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C68B2A76DE17552C38A198 /* Pods_ShadowsocksX_RTests.framework */; };
+		1AD98264E19F4E8EB82F9580 /* Pods_ShadowsocksX_R.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1630624EC2B37CEB9FF41B4B /* Pods_ShadowsocksX_R.framework */; };
 		9B07EFA71D048BBB0052D9DF /* ss-local in Resources */ = {isa = PBXBuildFile; fileRef = 9B07EFA61D048BBB0052D9DF /* ss-local */; };
 		9B07EFAC1D048E880052D9DF /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B07EFA81D048E880052D9DF /* menu_icon@2x.png */; };
 		9B07EFAD1D048E880052D9DF /* menu_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B07EFA91D048E880052D9DF /* menu_icon.png */; };
@@ -102,8 +103,10 @@
 		09DBDD571D7EFFD00041C076 /* StatusItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemView.swift; sourceTree = "<group>"; };
 		09DBDD5A1D7EFFE50041C076 /* SystemThemeChangeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemThemeChangeHelper.swift; sourceTree = "<group>"; };
 		09F561671D5B1B9900CC31B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PreferencesWindowController.strings"; sourceTree = "<group>"; };
+		1630624EC2B37CEB9FF41B4B /* Pods_ShadowsocksX_R.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksX_R.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		19083CFCED87354F006967FF /* Pods_ShadowsocksX_NGUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksX_NGUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E7783AEDB4A3BDDC9FF16AC /* libPods-proxy_conf_helper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-proxy_conf_helper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22B925804877EC2A090C632F /* Pods-ShadowsocksX-RTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksX-RTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksX-RTests/Pods-ShadowsocksX-RTests.release.xcconfig"; sourceTree = "<group>"; };
 		283ED1A8E9B711AC65670031 /* Pods_ShadowsocksX_NG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksX_NG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		297AF069022A197FD8E9D226 /* Pods-proxy_conf_helper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proxy_conf_helper.release.xcconfig"; path = "Pods/Target Support Files/Pods-proxy_conf_helper/Pods-proxy_conf_helper.release.xcconfig"; sourceTree = "<group>"; };
 		388120F062D7EB7DD0D8DDCA /* Pods_ShadowsocksX_NGTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksX_NGTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +114,7 @@
 		50D54926AA21B0D4D8DD9C4F /* Pods-ShadowsocksX-NGUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksX-NGUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksX-NGUITests/Pods-ShadowsocksX-NGUITests.release.xcconfig"; sourceTree = "<group>"; };
 		58907E7F50405104B42CB189 /* Pods-ShadowsocksX-NGUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksX-NGUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksX-NGUITests/Pods-ShadowsocksX-NGUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B6203C1228FCD3D365814AC /* Pods-ShadowsocksX-NGTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksX-NGTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksX-NGTests/Pods-ShadowsocksX-NGTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9508F984AB5CD4F1E607113F /* Pods-ShadowsocksX-R.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksX-R.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksX-R/Pods-ShadowsocksX-R.debug.xcconfig"; sourceTree = "<group>"; };
 		9B07EFA61D048BBB0052D9DF /* ss-local */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "ss-local"; sourceTree = "<group>"; };
 		9B07EFA81D048E880052D9DF /* menu_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_icon@2x.png"; sourceTree = "<group>"; };
 		9B07EFA91D048E880052D9DF /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = "<group>"; };
@@ -174,9 +178,12 @@
 		9BEEF0771D04FE8A00FC52B3 /* LaunchAgentUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchAgentUtils.swift; sourceTree = "<group>"; };
 		9BEEF0791D05631500FC52B3 /* AdvPreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvPreferencesWindowController.swift; sourceTree = "<group>"; };
 		B4E6A97CA843F3943524B686 /* Pods-proxy_conf_helper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proxy_conf_helper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-proxy_conf_helper/Pods-proxy_conf_helper.debug.xcconfig"; sourceTree = "<group>"; };
+		C5C9A9C33FAE0C3B9EA29034 /* Pods-ShadowsocksX-RTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksX-RTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksX-RTests/Pods-ShadowsocksX-RTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C8E42A6A1D4F270A0074C7EA /* UserRulesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRulesController.swift; sourceTree = "<group>"; };
 		C8E42A6F1D4F2CAF0074C7EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UserRulesController.xib; sourceTree = "<group>"; };
 		C8E42A721D4F2CB10074C7EA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UserRulesController.strings"; sourceTree = "<group>"; };
+		D2D0C986FB1CB9225B11D72A /* Pods-ShadowsocksX-R.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksX-R.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksX-R/Pods-ShadowsocksX-R.release.xcconfig"; sourceTree = "<group>"; };
+		D6C68B2A76DE17552C38A198 /* Pods_ShadowsocksX_RTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksX_RTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E9FB3855DA55D0710EE7BD /* Pods-ShadowsocksX-NG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksX-NG.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksX-NG/Pods-ShadowsocksX-NG.release.xcconfig"; sourceTree = "<group>"; };
 		FE3237E9FB24D9B924A0E630 /* Pods-ShadowsocksX-NG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShadowsocksX-NG.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShadowsocksX-NG/Pods-ShadowsocksX-NG.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,7 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B3FFF3E1D08D9910019A709 /* SystemConfiguration.framework in Frameworks */,
-				258E511BA910B0521B24DAB8 /* Pods_ShadowsocksX_NG.framework in Frameworks */,
+				1AD98264E19F4E8EB82F9580 /* Pods_ShadowsocksX_R.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0E57CCA7EB34B90F9D340F2 /* Pods_ShadowsocksX_NGTests.framework in Frameworks */,
+				10E79BBF7191B4B864515E43 /* Pods_ShadowsocksX_RTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +239,10 @@
 				50D54926AA21B0D4D8DD9C4F /* Pods-ShadowsocksX-NGUITests.release.xcconfig */,
 				B4E6A97CA843F3943524B686 /* Pods-proxy_conf_helper.debug.xcconfig */,
 				297AF069022A197FD8E9D226 /* Pods-proxy_conf_helper.release.xcconfig */,
+				9508F984AB5CD4F1E607113F /* Pods-ShadowsocksX-R.debug.xcconfig */,
+				D2D0C986FB1CB9225B11D72A /* Pods-ShadowsocksX-R.release.xcconfig */,
+				C5C9A9C33FAE0C3B9EA29034 /* Pods-ShadowsocksX-RTests.debug.xcconfig */,
+				22B925804877EC2A090C632F /* Pods-ShadowsocksX-RTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -364,6 +376,8 @@
 				388120F062D7EB7DD0D8DDCA /* Pods_ShadowsocksX_NGTests.framework */,
 				19083CFCED87354F006967FF /* Pods_ShadowsocksX_NGUITests.framework */,
 				1E7783AEDB4A3BDDC9FF16AC /* libPods-proxy_conf_helper.a */,
+				1630624EC2B37CEB9FF41B4B /* Pods_ShadowsocksX_R.framework */,
+				D6C68B2A76DE17552C38A198 /* Pods_ShadowsocksX_RTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -439,12 +453,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = qiuyuzhou;
 				TargetAttributes = {
 					9B0BFFE41D0460A70040E62B = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = VS34895XT6;
+						LastSwiftMigration = 0800;
 					};
 					9B0BFFF31D0460A70040E62B = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -548,7 +563,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		3545247EFCD033C3FA63EA6C /* [CP] Check Pods Manifest.lock */ = {
@@ -563,7 +578,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		3E819BD46B855EDB116A3C70 /* [CP] Copy Pods Resources */ = {
@@ -578,7 +593,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShadowsocksX-NG/Pods-ShadowsocksX-NG-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShadowsocksX-R/Pods-ShadowsocksX-R-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5E160625E3EC80E27DA7EF05 /* [CP] Embed Pods Frameworks */ = {
@@ -593,7 +608,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShadowsocksX-NG/Pods-ShadowsocksX-NG-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShadowsocksX-R/Pods-ShadowsocksX-R-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8A094D4241AB0C72A177FDC3 /* [CP] Embed Pods Frameworks */ = {
@@ -608,7 +623,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShadowsocksX-NGTests/Pods-ShadowsocksX-NGTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShadowsocksX-RTests/Pods-ShadowsocksX-RTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A3C8167BB5EB01FBDE2A08BC /* [CP] Check Pods Manifest.lock */ = {
@@ -623,7 +638,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		D8C2D6AF002916F4095E15E3 /* [CP] Copy Pods Resources */ = {
@@ -638,7 +653,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShadowsocksX-NGTests/Pods-ShadowsocksX-NGTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShadowsocksX-RTests/Pods-ShadowsocksX-RTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -766,6 +781,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -776,8 +792,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -811,6 +829,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -821,8 +840,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -841,12 +862,13 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
 		9B0B00091D0460A70040E62B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE3237E9FB24D9B924A0E630 /* Pods-ShadowsocksX-NG.debug.xcconfig */;
+			baseConfigurationReference = 9508F984AB5CD4F1E607113F /* Pods-ShadowsocksX-R.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -870,12 +892,13 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksX-NG/ShadowsocksX-NG-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
 		9B0B000A1D0460A70040E62B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9E9FB3855DA55D0710EE7BD /* Pods-ShadowsocksX-NG.release.xcconfig */;
+			baseConfigurationReference = D2D0C986FB1CB9225B11D72A /* Pods-ShadowsocksX-R.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -898,12 +921,13 @@
 				PRODUCT_NAME = "ShadowsocksX-R";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShadowsocksX-NG/ShadowsocksX-NG-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
 		9B0B000C1D0460A70040E62B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B6203C1228FCD3D365814AC /* Pods-ShadowsocksX-NGTests.debug.xcconfig */;
+			baseConfigurationReference = C5C9A9C33FAE0C3B9EA29034 /* Pods-ShadowsocksX-RTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -917,7 +941,7 @@
 		};
 		9B0B000D1D0460A70040E62B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3AC7CD9886196A997D6FC78D /* Pods-ShadowsocksX-NGTests.release.xcconfig */;
+			baseConfigurationReference = 22B925804877EC2A090C632F /* Pods-ShadowsocksX-RTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
