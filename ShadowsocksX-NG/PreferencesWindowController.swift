@@ -80,7 +80,8 @@ class PreferencesWindowController: NSWindowController
             "verify_sha1",
             "auth_simple",
             "auth_sha1",
-            "auth_sha1_v2"
+            "auth_sha1_v2",
+            "auth_sha1_v4"
             ])
 
 

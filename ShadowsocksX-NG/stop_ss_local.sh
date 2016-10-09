@@ -12,5 +12,5 @@ launchctl unload "$HOME/Library/LaunchAgents/com.yicheng.ShadowsocksX-R.local.pl
 
 for  i in `ls $HOME/Library/LaunchAgents/ |grep wsocks`;
 do
-    launchctl unload $HOME/Library/LaunchAgents/$i
+    launchctl unload $HOME/Library/LaunchAgents/$i &
 done
