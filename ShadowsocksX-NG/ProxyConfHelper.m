@@ -118,6 +118,9 @@ GCDWebServer *webServer =nil;
     //start server here and then using the string next line
     //next two lines can open gcdwebserver and work around pac file
     NSString *PACURLString = [self startPACServer: PACFilePath];//hi 可以切换成定制pac文件路径来达成使用定制文件路径
+    if (PACURLString == nil){
+        return;
+    }
     NSURL* url = [NSURL URLWithString: PACURLString];
 //    NSString* urlString = [NSString stringWithFormat:@"%@/.ShadowsocksX-NG/gfwlist.js", NSHomeDirectory()];
 //    NSURL* url = [NSURL fileURLWithPath:urlString];
@@ -153,6 +156,10 @@ GCDWebServer *webServer =nil;
     //    NSString* urlString = [NSString stringWithFormat:@"%@/.ShadowsocksX-NG/gfwlist.js", NSHomeDirectory()];
     //    NSURL* url = [NSURL fileURLWithPath:urlString];
     NSString *PACURLString = [self startPACServer: PACFilePath];//hi 可以切换成定制pac文件路径来达成使用定制文件路径
+    if (PACURLString == nil){
+        return;
+    }
+    
     NSURL* url = [NSURL URLWithString: PACURLString];
     NSUInteger port = [[NSUserDefaults standardUserDefaults]integerForKey:@"LocalSocks5.ListenPort"];
 
@@ -182,6 +189,12 @@ GCDWebServer *webServer =nil;
     [GCDWebServer setLogLevel:4];
     [self stopPACServer];
     webServer = [[GCDWebServer alloc] init];
+    
+    if(originalPACData == nil){
+        NSLog(@"Error:PAC DATA is nil");
+        return nil;
+    }
+    
     [webServer addHandlerForMethod:@"GET" path:routerPath requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse *(GCDWebServerRequest *request) {
         return [GCDWebServerDataResponse responseWithData: originalPACData contentType:@"application/x-ns-proxy-autoconfig"];
     }
