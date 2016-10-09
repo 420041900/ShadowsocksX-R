@@ -68,6 +68,13 @@ class ApiMgr{
             let current = self.defaults.boolForKey("ShadowsocksOn")
             return GCDWebServerDataResponse(JSONObject: ["enable":current])
         })
+        
+        apiserver.addHandlerForMethod("POST", path: "/servers", requestClass: GCDWebServerRequest.self, processBlock: {request in
+            let uuid = ((request as! GCDWebServerURLEncodedFormRequest).arguments["uuid"])as? String
+            if uuid == nil{return GCDWebServerDataResponse(JSONObject: ["status":0])}
+            self.changeServ(uuid!)
+            return GCDWebServerDataResponse(JSONObject: ["status":1])
+        })
     }
     
     func serverList()->NSArray{
@@ -86,5 +93,16 @@ class ApiMgr{
         dispatch_async(dispatch_get_main_queue(), {
             self.appdeleget.updateMainMenu()
         });
+    }
+    
+    func changeServ(uuid:String){
+        for each in SerMgr.profiles{
+            if each.uuid == uuid{
+                SerMgr.setActiveProfiledId(uuid)
+                appdeleget.updateServersMenu()
+                SyncSSLocal()
+                return
+            }
+        }
     }
 }
