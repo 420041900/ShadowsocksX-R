@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		092268921D7D0C0C00146FE7 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 092268911D7D0C0C00146FE7 /* SimplePing.m */; };
 		0922689B1D7D1D1B00146FE7 /* PingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0922689A1D7D1D1B00146FE7 /* PingClient.swift */; };
+		092BD7561DAA6F3C002B6164 /* ApiServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092BD7551DAA6F3C002B6164 /* ApiServer.swift */; };
 		093607491D5C161B00BF8C88 /* bypasschina.txt in Resources */ = {isa = PBXBuildFile; fileRef = 093607481D5C161B00BF8C88 /* bypasschina.txt */; };
 		10E79BBF7191B4B864515E43 /* Pods_ShadowsocksX_RTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C68B2A76DE17552C38A198 /* Pods_ShadowsocksX_RTests.framework */; };
 		1AD98264E19F4E8EB82F9580 /* Pods_ShadowsocksX_R.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1630624EC2B37CEB9FF41B4B /* Pods_ShadowsocksX_R.framework */; };
@@ -95,6 +96,7 @@
 		092268901D7D0C0C00146FE7 /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
 		092268911D7D0C0C00146FE7 /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
 		0922689A1D7D1D1B00146FE7 /* PingClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PingClient.swift; sourceTree = "<group>"; };
+		092BD7551DAA6F3C002B6164 /* ApiServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiServer.swift; sourceTree = "<group>"; };
 		093607481D5C161B00BF8C88 /* bypasschina.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bypasschina.txt; sourceTree = "<group>"; };
 		09F561671D5B1B9900CC31B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PreferencesWindowController.strings"; sourceTree = "<group>"; };
 		1630624EC2B37CEB9FF41B4B /* Pods_ShadowsocksX_R.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShadowsocksX_R.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -318,6 +320,7 @@
 				9BA04B211D23D5A5005AAD7F /* ProxyConfTool.h */,
 				9BA04B221D23D5A5005AAD7F /* ProxyConfTool.m */,
 				0922689A1D7D1D1B00146FE7 /* PingClient.swift */,
+				092BD7551DAA6F3C002B6164 /* ApiServer.swift */,
 			);
 			path = "ShadowsocksX-NG";
 			sourceTree = "<group>";
@@ -451,7 +454,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = PLN78VXB7A;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					9B0BFFF31D0460A70040E62B = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -674,6 +677,7 @@
 				9BA04B231D23D5A5005AAD7F /* ProxyConfTool.m in Sources */,
 				9BEEF0781D04FE8A00FC52B3 /* LaunchAgentUtils.swift in Sources */,
 				C8E42A6C1D4F270A0074C7EA /* UserRulesController.swift in Sources */,
+				092BD7561DAA6F3C002B6164 /* ApiServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -861,7 +865,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = PLN78VXB7A;

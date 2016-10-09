@@ -158,6 +158,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         ProxyConfHelper.install()
         applyConfig()
         SyncSSLocal()
+        ApiMgr.shard.start()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
