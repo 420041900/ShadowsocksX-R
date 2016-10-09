@@ -14,7 +14,6 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ShadowsocksX_R" customModuleProvider="target">
             <connections>
                 <outlet property="RunningStatusMenuItem" destination="fzk-mE-CEV" id="R4x-gK-Qcw"/>
-                <outlet property="ShowNetworkSpeedItem" destination="4ZM-3c-7G0" id="v38-Ol-qLg"/>
                 <outlet property="autoModeMenuItem" destination="r07-Gu-aEz" id="9aH-pQ-Rgi"/>
                 <outlet property="bypasschinaModeMenuItem" destination="yp4-NV-9i8" id="6Fc-aq-cpU"/>
                 <outlet property="globalModeMenuItem" destination="Mw3-Jm-eXA" id="ar5-Yx-3ze"/>
@@ -137,12 +136,6 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="toggleLaunghAtLogin:" target="Voe-Tx-rLC" id="erk-ce-mO3"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Show Network Speed" id="4ZM-3c-7G0">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="showSpeedTap:" target="Voe-Tx-rLC" id="mou-qu-gus"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="DTJ-NF-Wxr"/>
