@@ -196,7 +196,7 @@ GCDWebServer *webServer =nil;
 
     [webServer startWithOptions:options error:NULL];
 
-    return [NSString stringWithFormat:@"%@%@:%d%@",@"http://",address,port,routerPath];
+    return [NSString stringWithFormat:@"%@%@:%d%@?s=%d",@"http://",address,port,routerPath,arc4random()];
 }
 
 + (void)stopPACServer {
