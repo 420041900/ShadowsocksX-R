@@ -81,7 +81,9 @@ class PreferencesWindowController: NSWindowController
             "auth_simple",
             "auth_sha1",
             "auth_sha1_v2",
-            "auth_sha1_v4"
+            "auth_sha1_v4",
+            "auth_aes128_md5",
+            "auth_aes128_sha1"
             ])
 
 

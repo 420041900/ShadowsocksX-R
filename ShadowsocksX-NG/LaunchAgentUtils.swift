@@ -8,7 +8,7 @@
 
 import Foundation
 
-let SS_LOCAL_VERSION = "2.6.3.2"
+let SS_LOCAL_VERSION = "2.6.3.3"
 let APP_SUPPORT_DIR = "/Library/Application Support/ShadowsocksX-R/"
 let LAUNCH_AGENT_DIR = "/Library/LaunchAgents/"
 let LAUNCH_AGENT_CONF_NAME = "com.yicheng.ShadowsocksX-R.local.plist"
