@@ -139,6 +139,7 @@ class PreferencesWindowController: NSWindowController
         profile.protocols = editingProfile.protocols
         profile.obfs = editingProfile.obfs
         profile.obfspara = editingProfile.obfspara
+        profile.method = editingProfile.method
 
         profileMgr.profiles.append(profile)
         profilesTableView.beginUpdates()

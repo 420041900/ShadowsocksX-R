@@ -40,11 +40,11 @@ class ApiMgr{
         })
         
         apiserver.addHandlerForMethod("POST", path: "/mode", requestClass: GCDWebServerURLEncodedFormRequest.self, processBlock: {request in
-            if let arg = ((request as! GCDWebServerURLEncodedFormRequest).arguments["vaule"])as? String
+            if let arg = ((request as! GCDWebServerURLEncodedFormRequest).arguments["value"])as? String
             {
                 switch arg{
                 case "auto":self.defaults.setValue("auto", forKey: "ShadowsocksRunningMode")
-                case "gloable":self.defaults.setValue("global", forKey: "ShadowsocksRunningMode")
+                case "global":self.defaults.setValue("global", forKey: "ShadowsocksRunningMode")
                 case "manual":self.defaults.setValue("manual", forKey: "ShadowsocksRunningMode")
                 case "bypasschina":self.defaults.setValue("bypasschina", forKey: "ShadowsocksRunningMode")
                 default:return GCDWebServerDataResponse(JSONObject: ["Status":0])
@@ -69,9 +69,10 @@ class ApiMgr{
             return GCDWebServerDataResponse(JSONObject: ["enable":current])
         })
         
-        apiserver.addHandlerForMethod("POST", path: "/servers", requestClass: GCDWebServerRequest.self, processBlock: {request in
+        apiserver.addHandlerForMethod("POST", path: "/servers", requestClass: GCDWebServerURLEncodedFormRequest.self, processBlock: {request in
             let uuid = ((request as! GCDWebServerURLEncodedFormRequest).arguments["uuid"])as? String
             if uuid == nil{return GCDWebServerDataResponse(JSONObject: ["status":0])}
+            print(uuid)
             self.changeServ(uuid!)
             return GCDWebServerDataResponse(JSONObject: ["status":1])
         })
@@ -98,6 +99,7 @@ class ApiMgr{
     func changeServ(uuid:String){
         for each in SerMgr.profiles{
             if each.uuid == uuid{
+                print("checked!")
                 SerMgr.setActiveProfiledId(uuid)
                 appdeleget.updateServersMenu()
                 SyncSSLocal()
