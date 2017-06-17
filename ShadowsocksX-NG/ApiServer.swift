@@ -16,30 +16,30 @@ class ApiMgr{
     
     let apiserver = GCDWebServer()
     let SerMgr = ServerProfileManager.instance
-    let defaults = NSUserDefaults.standardUserDefaults()
-    let appdeleget = NSApplication.sharedApplication().delegate as! AppDelegate
+    let defaults = UserDefaults.standard
+    let appdeleget = NSApplication.shared().delegate as! AppDelegate
     let api_port:UInt = 9528
     
     func start(){
         setRouter()
         do{
-            try apiserver.startWithOptions([GCDWebServerOption_Port:api_port,"BindToLocalhost":true])
+            try apiserver?.start(options: [GCDWebServerOption_Port:api_port,"BindToLocalhost":true])
         }catch{
             NSLog("Error:ApiServ start fail")
         }
     }
     
     func setRouter(){
-        apiserver.addHandlerForMethod("GET", path: "/servers", requestClass: GCDWebServerRequest.self, processBlock: {request in
-            return GCDWebServerDataResponse(JSONObject: self.serverList())
+        apiserver?.addHandler(forMethod: "GET", path: "/servers", request: GCDWebServerRequest.self, processBlock: {request in
+            return GCDWebServerDataResponse(jsonObject: self.serverList())
         })
         
-        apiserver.addHandlerForMethod("POST", path: "/toggle", requestClass: GCDWebServerRequest.self, processBlock: {request in
+        apiserver?.addHandler(forMethod: "POST", path: "/toggle", request: GCDWebServerRequest.self, processBlock: {request in
             self.toggle()
-            return GCDWebServerDataResponse(JSONObject: ["Status":1])
+            return GCDWebServerDataResponse(jsonObject: ["Status":1])
         })
         
-        apiserver.addHandlerForMethod("POST", path: "/mode", requestClass: GCDWebServerURLEncodedFormRequest.self, processBlock: {request in
+        apiserver?.addHandler(forMethod: "POST", path: "/mode", request: GCDWebServerURLEncodedFormRequest.self, processBlock: {request in
             if let arg = ((request as! GCDWebServerURLEncodedFormRequest).arguments["value"])as? String
             {
                 switch arg{
@@ -47,34 +47,34 @@ class ApiMgr{
                 case "global":self.defaults.setValue("global", forKey: "ShadowsocksRunningMode")
                 case "manual":self.defaults.setValue("manual", forKey: "ShadowsocksRunningMode")
                 case "bypasschina":self.defaults.setValue("bypasschina", forKey: "ShadowsocksRunningMode")
-                default:return GCDWebServerDataResponse(JSONObject: ["Status":0])
+                default:return GCDWebServerDataResponse(jsonObject: ["Status":0])
                 }
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.appdeleget.updateRunningModeMenu()
                 });
-                return GCDWebServerDataResponse(JSONObject: ["Status":1])
+                return GCDWebServerDataResponse(jsonObject: ["Status":1])
             }
-            return GCDWebServerDataResponse(JSONObject: ["Status":0])
+            return GCDWebServerDataResponse(jsonObject: ["Status":0])
         })
         
-        apiserver.addHandlerForMethod("GET", path: "/mode", requestClass: GCDWebServerRequest.self, processBlock: {request in
-            if let current = self.defaults.stringForKey("ShadowsocksRunningMode"){
-                return GCDWebServerDataResponse(JSONObject: ["mode":current])
+        apiserver?.addHandler(forMethod: "GET", path: "/mode", request: GCDWebServerRequest.self, processBlock: {request in
+            if let current = self.defaults.string(forKey: "ShadowsocksRunningMode"){
+                return GCDWebServerDataResponse(jsonObject: ["mode":current])
             }
-            return GCDWebServerDataResponse(JSONObject: ["mode":"unknow"])
+            return GCDWebServerDataResponse(jsonObject: ["mode":"unknow"])
         })
         
-        apiserver.addHandlerForMethod("GET", path: "/status", requestClass: GCDWebServerRequest.self, processBlock: {request in
-            let current = self.defaults.boolForKey("ShadowsocksOn")
-            return GCDWebServerDataResponse(JSONObject: ["enable":current])
+        apiserver?.addHandler(forMethod: "GET", path: "/status", request: GCDWebServerRequest.self, processBlock: {request in
+            let current = self.defaults.bool(forKey: "ShadowsocksOn")
+            return GCDWebServerDataResponse(jsonObject: ["enable":current])
         })
         
-        apiserver.addHandlerForMethod("POST", path: "/servers", requestClass: GCDWebServerURLEncodedFormRequest.self, processBlock: {request in
+        apiserver?.addHandler(forMethod: "POST", path: "/servers", request: GCDWebServerURLEncodedFormRequest.self, processBlock: {request in
             let uuid = ((request as! GCDWebServerURLEncodedFormRequest).arguments["uuid"])as? String
-            if uuid == nil{return GCDWebServerDataResponse(JSONObject: ["status":0])}
+            if uuid == nil{return GCDWebServerDataResponse(jsonObject: ["status":0])}
             print(uuid)
             self.changeServ(uuid!)
-            return GCDWebServerDataResponse(JSONObject: ["status":1])
+            return GCDWebServerDataResponse(jsonObject: ["status":1])
         })
     }
     
@@ -83,20 +83,20 @@ class ApiMgr{
         for each in self.SerMgr.profiles{
             data.append(["id":each.uuid,"note":each.remark])
         }
-        return data
+        return data as NSArray
     }
     
     func toggle(){
-        var isOn = self.defaults.boolForKey("ShadowsocksOn")
+        var isOn = self.defaults.bool(forKey: "ShadowsocksOn")
         isOn = !isOn
-        self.defaults.setBool(isOn, forKey: "ShadowsocksOn")
+        self.defaults.set(isOn, forKey: "ShadowsocksOn")
         appdeleget.applyConfig()
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             self.appdeleget.updateMainMenu()
         });
     }
     
-    func changeServ(uuid:String){
+    func changeServ(_ uuid:String){
         for each in SerMgr.profiles{
             if each.uuid == uuid{
                 print("checked!")

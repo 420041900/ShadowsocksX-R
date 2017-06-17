@@ -27,18 +27,18 @@ class ServerProfile: NSObject {
     var latency:String?
 
     override init() {
-        uuid = NSUUID().UUIDString
+        uuid = UUID().uuidString
     }
     
     init(uuid: String) {
         self.uuid = uuid
     }
     
-    static func fromDictionary(data:[String:AnyObject]) -> ServerProfile {
+    static func fromDictionary(_ data:[String:AnyObject]) -> ServerProfile {
         let cp = {
             (profile: ServerProfile) in
             profile.serverHost = data["ServerHost"] as! String
-            profile.serverPort = (data["ServerPort"] as! NSNumber).unsignedShortValue
+            profile.serverPort = (data["ServerPort"] as! NSNumber).uint16Value
             profile.method = data["Method"] as! String
             profile.password = data["Password"] as! String
 
@@ -68,40 +68,40 @@ class ServerProfile: NSObject {
     
     func toDictionary() -> [String:AnyObject] {
         var d = [String:AnyObject]()
-        d["Id"] = uuid
-        d["ServerHost"] = serverHost
-        d["ServerPort"] = NSNumber(unsignedShort:serverPort)
-        d["Method"] = method
-        d["Password"] = password
-        d["Remark"] = remark
-        d["obfs"] = obfs
-        d["protocol"] = protocols
-        d["obfspara"] = obfspara
+        d["Id"] = uuid as AnyObject
+        d["ServerHost"] = serverHost as AnyObject
+        d["ServerPort"] = NSNumber(value: serverPort as UInt16)
+        d["Method"] = method as AnyObject
+        d["Password"] = password as AnyObject
+        d["Remark"] = remark as AnyObject
+        d["obfs"] = obfs as AnyObject
+        d["protocol"] = protocols as AnyObject
+        d["obfspara"] = obfspara as AnyObject
 //        d["OTA"] = ota
         return d
     }
     
     func toJsonConfig() -> [String: AnyObject] {
-        var conf: [String: AnyObject] = ["server": serverHost,
-                                         "server_port": NSNumber(unsignedShort: serverPort),
-                                         "password": password,
-                                         "method": method,
-                                         "protocol":protocols,
-                                         "obfs":obfs,
-                                         "obfs_param":obfspara
+        var conf: [String: AnyObject] = ["server": serverHost as AnyObject,
+                                         "server_port": NSNumber(value: serverPort as UInt16),
+                                         "password": password as AnyObject,
+                                         "method": method as AnyObject,
+                                         "protocol":protocols as AnyObject,
+                                         "obfs":obfs as AnyObject,
+                                         "obfs_param":obfspara as AnyObject
                                          ]
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        conf["local_port"] = NSNumber(unsignedShort: UInt16(defaults.integerForKey("LocalSocks5.ListenPort")))
-        conf["local_address"] = defaults.stringForKey("LocalSocks5.ListenAddress")
-        conf["timeout"] = NSNumber(unsignedInt: UInt32(defaults.integerForKey("LocalSocks5.Timeout")))
+        let defaults = UserDefaults.standard
+        conf["local_port"] = NSNumber(value: UInt16(defaults.integer(forKey: "LocalSocks5.ListenPort")) as UInt16)
+        conf["local_address"] = defaults.string(forKey: "LocalSocks5.ListenAddress") as AnyObject
+        conf["timeout"] = NSNumber(value: UInt32(defaults.integer(forKey: "LocalSocks5.Timeout")) as UInt32)
 //        conf["auth"] = NSNumber(bool: ota)
 
         return conf
     }
     
     func isValid() -> Bool {
-        func validateIpAddress(ipToValidate: String) -> Bool {
+        func validateIpAddress(_ ipToValidate: String) -> Bool {
             
             var sin = sockaddr_in()
             var sin6 = sockaddr_in6()
@@ -118,10 +118,10 @@ class ServerProfile: NSObject {
             return false;
         }
         
-        func validateDomainName(value: String) -> Bool {
+        func validateDomainName(_ value: String) -> Bool {
             let validHostnameRegex = "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$"
             
-            if (value.rangeOfString(validHostnameRegex, options: .RegularExpressionSearch) != nil) {
+            if (value.range(of: validHostnameRegex, options: .regularExpression) != nil) {
                 return true
             } else {
                 return false
@@ -139,24 +139,24 @@ class ServerProfile: NSObject {
         return true
     }
 
-    func base64(string:String,url_safe:Bool=true)->String{
+    func base64(_ string:String,url_safe:Bool=true)->String{
 
-        var encode_str = string.dataUsingEncoding(NSUTF8StringEncoding)!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+        var encode_str = string.data(using: String.Encoding.utf8)!.base64EncodedString(options: NSData.Base64EncodingOptions())
         if(url_safe){
-            encode_str = encode_str.stringByReplacingOccurrencesOfString("+", withString: "-")
-            encode_str = encode_str.stringByReplacingOccurrencesOfString("/", withString: "_")
-            encode_str = encode_str.stringByReplacingOccurrencesOfString("=", withString: "");
+            encode_str = encode_str.replacingOccurrences(of: "+", with: "-")
+            encode_str = encode_str.replacingOccurrences(of: "/", with: "_")
+            encode_str = encode_str.replacingOccurrences(of: "=", with: "");
         }
         return encode_str
     }
     
-    func URL() -> NSURL? {
+    func URL() -> Foundation.URL? {
 //        服务器:端口:协议:加密方式:混淆方式:base64（密码）？obfsparam= Base64(混淆参数)&remarks=Base64(备注)
         if obfs == "plain" && protocols == "origin"{
             let parts = "\(method):\(password)@\(serverHost):\(serverPort)"
-            return NSURL(string: "ss://\(base64(parts,url_safe: false))")
+            return Foundation.URL(string: "ss://\(base64(parts,url_safe: false))")
         }
         let parts = "\(serverHost):\(serverPort):\(protocols):\(method):\(obfs):\(base64(password))?obfsparam=\(base64(obfspara))&remarks=\(base64(remark))"
-            return NSURL(string: "ssr://\(base64(parts))")
+            return Foundation.URL(string: "ssr://\(base64(parts))")
     }
 }

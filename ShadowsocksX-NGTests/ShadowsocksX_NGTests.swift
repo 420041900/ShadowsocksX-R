@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import ShadowsocksX_NG
+//@testable import ShadowsocksX_NG
 
 class ShadowsocksX_NGTests: XCTestCase {
     
@@ -28,7 +28,7 @@ class ShadowsocksX_NGTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
