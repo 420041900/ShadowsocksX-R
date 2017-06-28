@@ -63,7 +63,7 @@ ref: [GitFlow](http://nvie.com/posts/a-successful-git-branching-model/)
 ## TODO List
 
 - [ ] Over [kcptun](https://github.com/xtaci/kcptun)
-- Export/Import configure file.
+- [ ] Export/Import configure file.
 
 ## License
 
