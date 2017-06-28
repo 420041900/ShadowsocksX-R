@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     var advPreferencesWinCtrl: AdvPreferencesWindowController!
     var proxyPreferencesWinCtrl: ProxyPreferencesController!
     var editUserRulesWinCtrl: UserRulesController!
+    var httpPreferencesWinCtrl : HTTPPreferencesWindowController!
 
     var launchAtLoginController: LaunchAtLoginController = LaunchAtLoginController()
     
@@ -48,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         // Prepare ss-local
         InstallSSLocal()
-        
+        InstallPrivoxy()
         // Prepare defaults
         let defaults = UserDefaults.standard
         defaults.register(defaults: [
@@ -62,7 +63,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             "LocalSocks5.EnableUDPRelay": NSNumber(value: false as Bool),
             "LocalSocks5.EnableVerboseMode": NSNumber(value: false as Bool),
             "GFWListURL": "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt",
-            "AutoConfigureNetworkServices": NSNumber(value: true as Bool)
+            "AutoConfigureNetworkServices": NSNumber(value: true as Bool),
+            "LocalHTTP.ListenAddress": "127.0.0.1",
+            "LocalHTTP.ListenPort": NSNumber(value: 1087 as UInt16),
+            "LocalHTTPOn": true,
+            "LocalHTTP.FollowGlobal": true,
         ])
         
         statusItem = NSStatusBar.system().statusItem(withLength: 20)
@@ -100,9 +105,31 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 self.applyConfig()
             }
         )
+        notifyCenter.addObserver(forName: NSNotification.Name(rawValue: NOTIFY_HTTP_CONF_CHANGED), object: nil, queue: nil
+            , using: {
+                (note) in
+                SyncPrivoxy()
+                self.applyConfig()
+                self.updateCopyHttpProxyExportMenu()
+            }
+        )
         notifyCenter.addObserver(forName: NSNotification.Name(rawValue: "NOTIFY_FOUND_SS_URL"), object: nil, queue: nil) {
             (note: Notification) in
-            if let userInfo = note.userInfo {
+            
+            let sendNotify = {
+                (title: String, subtitle: String, infoText: String) in
+                
+                let userNote = NSUserNotification()
+                userNote.title = title
+                userNote.subtitle = subtitle
+                userNote.informativeText = infoText
+                userNote.soundName = NSUserNotificationDefaultSoundName
+                
+                NSUserNotificationCenter.default
+                    .deliver(userNote);
+            }
+            
+            if let userInfo = (note as NSNotification).userInfo {
                 let urls: [URL] = userInfo["urls"] as! [URL]
                 
                 let mgr = ServerProfileManager.instance
@@ -115,32 +142,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                         mgr.profiles.append(profile)
                         isChanged = true
                         
-                        let userNote = NSUserNotification()
-                        userNote.title = "Add Shadowsocks Server Profile".localized
+                        var subtitle: String = ""
                         if userInfo["source"] as! String == "qrcode" {
-                            userNote.subtitle = "By scan QR Code".localized
+                            subtitle = "By scan QR Code".localized
                         } else if userInfo["source"] as! String == "url" {
-                            userNote.subtitle = "By Handle SS URL".localized
+                            subtitle = "By Handle SS URL".localized
                         }
-                        userNote.informativeText = "Host: \(profile.serverHost)"
-                        " Port: \(profile.serverPort)"
-                        " Encription Method: \(profile.method)".localized
-                        userNote.soundName = NSUserNotificationDefaultSoundName
                         
-                        NSUserNotificationCenter.default
-                            .deliver(userNote);
-                    }else{
-                        let userNote = NSUserNotification()
-                        userNote.title = "Failed to Add Server Profile".localized
-                        userNote.subtitle = "Address can't not be recognized".localized
-                        NSUserNotificationCenter.default
-                            .deliver(userNote);
+                        sendNotify("Add Shadowsocks Server Profile".localized, subtitle, "Host: \(profile.serverHost)")
                     }
                 }
                 
                 if isChanged {
                     mgr.save()
                     self.updateServersMenu()
+                } else {
+                    sendNotify("Not found valid qrcode of shadowsocks profile.", "", "")
                 }
             }
         }
@@ -164,6 +181,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
         StopSSLocal()
+        StopPrivoxy()
         ProxyConfHelper.disableProxy("hi")
         ProxyConfHelper.stopPACServer()
 
@@ -184,6 +202,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         if isOn {
             StartSSLocal()
+            StartPrivoxy()
             if mode == "auto" {
                 ProxyConfHelper.enablePACProxy("hi")
             } else if mode == "global" {
@@ -196,11 +215,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             }
         } else {
             StopSSLocal()
+            StopPrivoxy()
             ProxyConfHelper.disableProxy("hi")
         }
 
     }
     
+    // MARK: - UI Methods
     @IBAction func toggleRunning(_ sender: NSMenuItem) {
         let defaults = UserDefaults.standard
         var isOn = defaults.bool(forKey: "ShadowsocksOn")
@@ -211,7 +232,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         applyConfig()
     }
-
+    
     @IBAction func updateGFWList(_ sender: NSMenuItem) {
         UpdatePACFromGFWList()
     }
@@ -222,7 +243,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
         let ctrl = UserRulesController(windowNibName: "UserRulesController")
         editUserRulesWinCtrl = ctrl
-
+        
         ctrl.showWindow(self)
         NSApp.activate(ignoringOtherApps: true)
         ctrl.window?.makeKeyAndOrderFront(self)
@@ -311,6 +332,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
         let ctrl = AdvPreferencesWindowController(windowNibName: "AdvPreferencesWindowController")
         advPreferencesWinCtrl = ctrl
+        
+        ctrl.showWindow(self)
+        NSApp.activate(ignoringOtherApps: true)
+        ctrl.window?.makeKeyAndOrderFront(self)
+    }
+    
+    @IBAction func editHTTPPreferences(_ sender: NSMenuItem) {
+        if httpPreferencesWinCtrl != nil {
+            httpPreferencesWinCtrl.close()
+        }
+        let ctrl = HTTPPreferencesWindowController(windowNibName: "HTTPPreferencesWindowController")
+        httpPreferencesWinCtrl = ctrl
         
         ctrl.showWindow(self)
         NSApp.activate(ignoringOtherApps: true)
@@ -415,6 +448,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
     }
     
+    func updateCopyHttpProxyExportMenu() {
+        let defaults = UserDefaults.standard
+        let isOn = defaults.bool(forKey: "LocalHTTPOn")
+    }
+    
     func updateServersMenu() {
         let mgr = ServerProfileManager.instance
         serversMenuItem.submenu?.removeAllItems()
@@ -465,7 +503,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 NotificationCenter.default.post(
                     name: Notification.Name(rawValue: "NOTIFY_FOUND_SS_URL"), object: nil
                     , userInfo: [
-                        "ruls": [url],
+                        "urls": [url],
                         "source": "url",
                     ])
             }
