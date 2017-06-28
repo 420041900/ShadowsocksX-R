@@ -36,6 +36,7 @@ Then I rewrite the GUI code by swift.
 - Auto launch at login.
 - User rules for PAC.
 - Support OTA
+- HTTP Proxy by [privoxy](http://www.privoxy.org/)
 - An advance preferences panel to configure:
 	- Local socks5 listen address.
 	- Local socks5 listen port.
@@ -61,7 +62,8 @@ ref: [GitFlow](http://nvie.com/posts/a-successful-git-branching-model/)
 
 ## TODO List
 
-- [ ] Embed the http proxy server [privoxy](http://www.privoxy.org/).
+- [ ] Over [kcptun](https://github.com/xtaci/kcptun)
+- Export/Import configure file.
 
 ## License
 
